@@ -13,6 +13,7 @@ builder.Services.AddAutoMapper(cfg =>
 
 builder.Services.AddScoped<IMatchService, SQLMatchService>();
 builder.Services.AddScoped<IPlayerService, SQLPlayerService>();
+builder.Services.AddScoped<ITournamentService, SQLTournamentService>();
 
 string? connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");

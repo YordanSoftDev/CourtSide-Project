@@ -16,7 +16,7 @@ namespace TennisScores.Common.MatchEnumerations
         [Display(Name = "Fourth Round")]
         FourthRound = 3,
 
-        QuarterFinal = 4,
+        Quarterfinal = 4,
 
         Semifinal = 5,
 

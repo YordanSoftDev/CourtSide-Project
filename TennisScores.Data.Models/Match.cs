@@ -23,7 +23,7 @@
 
         public required string CourtName { get; set; }
 
-        //The venue(country and a tennis club or a stadium)
+        //The venue(tennis club or a stadium)
         //where the match will be played or was played
         public int VenueId { get; set; }
 

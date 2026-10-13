@@ -6,6 +6,6 @@
 
         public required string Name { get; set; }
 
-        public Tournament Tournaments { get; set; } = null!;
+        public virtual Tournament Tournament { get; set; } = null!;
     }
 }

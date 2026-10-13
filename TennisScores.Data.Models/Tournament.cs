@@ -7,7 +7,7 @@ namespace TennisScores.Data.Models
         public int Id { get; set; }
 
         //example value Almaty Open
-        public required string Name { get; set; }
+        public required string TournamentName { get; set; }
 
         //example value Almaty, Kazakhstan
         public required string Location { get; set; }
@@ -19,12 +19,15 @@ namespace TennisScores.Data.Models
         public required DateTime EndDate { get; set; }
 
         //example value ATP 250
-        public required string Type { get; set; }
+        public required string TournamentType { get; set; }
 
         //the variants are Grass, Clay, Hard, Carpet 
         public required CourtSurface CourtSurface { get; set; }
 
         //the variants are Indoor, Outdoor
         public required CourtEnvironment CourtEnvironment { get; set; }
+
+        public virtual ICollection<Venue> Venues { get; set; } =
+            new HashSet<Venue>();
     }
 }

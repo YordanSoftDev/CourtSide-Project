@@ -1,6 +1,5 @@
 ﻿namespace TennisScores.Data.Models
 {
-    using TennisScores.Data.Models.Country;
     public class Player
     {
         public int Id { get; set; }

@@ -18,7 +18,7 @@
                 .MapFrom(src => src.Venue.Name))
                 .ForMember(dest => dest.TournamentName,
                 opt => opt
-                .MapFrom(src => src.Tournament.Name))
+                .MapFrom(src => src.Tournament.TournamentName))
                 .ForMember(dest => dest.FirstPlayerFullName,
                 opt => opt
                 .MapFrom(src => $"{src.FirstPlayer.FirstName} " +
@@ -39,7 +39,7 @@
                 .MapFrom(src => src.Venue.Name))
                 .ForMember(dest => dest.TournamentName, 
                 opt => opt
-                .MapFrom(src => src.Tournament.Name))
+                .MapFrom(src => src.Tournament.TournamentName))
                 .ForMember(dest => dest.FirstPlayerFullName, 
                 opt => opt
                 .MapFrom(src => $"{src.FirstPlayer.FirstName} " +

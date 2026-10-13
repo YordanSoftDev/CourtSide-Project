@@ -12,6 +12,7 @@
 
         public virtual DbSet<Match> Matches { get; set; } = null!;
         public virtual DbSet<Player> Players { get; set; } = null!;
+        public virtual DbSet<Tournament> Tournaments { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

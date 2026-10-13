@@ -10,10 +10,10 @@
 
     public class SQLPlayerService : IPlayerService
     {
-        private readonly TennisManagementDbContext context;
+        private readonly TennisScoresDbContext context;
         private readonly IMapper mapper;
 
-        public SQLPlayerService(TennisManagementDbContext context,
+        public SQLPlayerService(TennisScoresDbContext context,
         IMapper mapper)
         {
             this.context = context;

@@ -11,10 +11,10 @@
 
     public class SQLMatchService : IMatchService
     {
-        private readonly TennisManagementDbContext context;
+        private readonly TennisScoresDbContext context;
         private readonly IMapper mapper;
 
-        public SQLMatchService(TennisManagementDbContext context,
+        public SQLMatchService(TennisScoresDbContext context,
         IMapper mapper)
         {
             this.context = context;

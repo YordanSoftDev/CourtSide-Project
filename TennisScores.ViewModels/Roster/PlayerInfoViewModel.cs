@@ -15,5 +15,7 @@
         public string Country { get; set; } = string.Empty;
 
         public string Birthplace { get; set; } = string.Empty;
+
+        public required int Rank { get; set; }
     }
 }

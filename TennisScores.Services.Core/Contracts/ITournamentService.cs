@@ -1,4 +1,4 @@
-﻿using TennisScores.ViewModels.Roster;
+﻿using TennisScores.ViewModels.Tournaments;
 
 namespace TennisScores.Services.Core.Contracts
 {
@@ -15,5 +15,7 @@ namespace TennisScores.Services.Core.Contracts
         public Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id);
 
         public Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync();
+
+        Task PopulateDropdownsAsync(TournamentFormViewModel model);
     }
 }
