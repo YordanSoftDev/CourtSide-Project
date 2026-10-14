@@ -1,11 +1,11 @@
 ﻿namespace TennisScores.Web.Controllers
 {
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
     using TennisScores.Services.Core.Contracts;
     using TennisScores.ViewModels.Tournaments;
 
-    public class TournamentsController : Controller
+    public class TournamentsController : BaseController
     {
         private readonly ITournamentService service;
 
@@ -15,16 +15,22 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() //My tournaments
         {
-            var tournaments = await this.service.GetAllTournamentsForIndexAsync();
+            //string? userId = this.GetUserId();
+
+            IEnumerable<TournamentInfoViewModel>? tournaments = 
+                await this.service
+                .GetAllTournamentsForIndexAsync(/*userId*/);
             return this.View(tournaments);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id) //Tournament overview
         {
-            var tournamentModel = await this.service.GetTournamentDetailsByIdAsync(id);
+            //string? userId = this.GetUserId();
+            TournamentDetailsViewModel? tournamentModel = await this
+                .service.GetTournamentDetailsByIdAsync(id /*userId*/);
 
             if (tournamentModel == null)
             {
@@ -35,9 +41,9 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create() //Display the form to register a new tournament
         {
-            var model = new TournamentFormViewModel();
+            TournamentFormViewModel? model = new TournamentFormViewModel();
             await this.service.PopulateDropdownsAsync(model);
 
             return this.View(model);
@@ -45,7 +51,8 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TournamentFormViewModel model)
+        public async Task<IActionResult> Create //Process and save the new tournament submission 
+            (TournamentFormViewModel model)  
         {
             if (!this.ModelState.IsValid)
             {
@@ -53,14 +60,19 @@
                 return this.View(model);
             }
 
-            int createdId = await this.service.CreateTournamentAsync(model);
+            //string? userId = this.GetUserId();
+
+            int createdId = await this.service
+                .CreateTournamentAsync(model /*userId*/);
             return this.RedirectToAction(nameof(Details), new { id = createdId });
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id) //Display the form to edit an existing tournament
         {
-            var model = await this.service.GetTournamentForEditByIdAsync(id);
+            string? userId = this.GetUserId();
+            TournamentFormViewModel? model = await this.service
+                .GetTournamentForEditByIdAsync(id /*userId*/);
 
             if (model == null)
             {
@@ -72,7 +84,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, TournamentFormViewModel model)
+        public async Task<IActionResult> Edit(int id, TournamentFormViewModel model) //Process and save the updated tournament changes 
         {
             if (!this.ModelState.IsValid)
             {
@@ -80,7 +92,10 @@
                 return this.View(model);
             }
 
-            bool isUpdated = await this.service.UpdateTournamentAsync(id, model);
+            string? userId = this.GetUserId();
+
+            bool isUpdated = await this.service
+                .UpdateTournamentAsync(id, model /*userId*/);
 
             if (!isUpdated)
             {
@@ -91,9 +106,11 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id) //Display the delete confirmation page for a tournament
         {
-            var tournamentModel = await this.service.GetTournamentDetailsByIdAsync(id);
+            string? userId = this.GetUserId();
+            TournamentDetailsViewModel? tournamentModel = await 
+                this.service.GetTournamentDetailsByIdAsync(id /*userId*/);
 
             if (tournamentModel == null)
             {
@@ -106,9 +123,10 @@
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id) //Process and permanently delete the tournament record
         {
-            bool isDeleted = await this.service.DeleteTournamentAsync(id);
+            string? userId = this.GetUserId(); 
+            bool isDeleted = await this.service.DeleteTournamentAsync(id /*userId*/);
 
             if (!isDeleted)
             {

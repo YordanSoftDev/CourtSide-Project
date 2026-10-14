@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
     using TennisScores.ViewModels.Roster;
     using TennisScores.Services.Core.Contracts;
+    using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
     public class PlayersController : Controller
     {
@@ -14,7 +15,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> MyPlayers() 
         {
             IEnumerable<PlayerInfoViewModel> players = await
                 this.service.GetAllPlayersForIndexAsync();

@@ -74,7 +74,6 @@
         public async Task<IEnumerable<PlayerInfoViewModel>> GetAllPlayersForIndexAsync()
         {
             return await this.context.Players
-                .AsNoTracking()
                 .OrderBy(p => p.Id)
                 .ProjectTo<PlayerInfoViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();

@@ -19,7 +19,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> CreateTournamentAsync(TournamentFormViewModel tournamentForm)
+        public async Task<int> CreateTournamentAsync(TournamentFormViewModel tournamentForm /*int userId*/)
         {
             var tournament = new Tournament
             {
@@ -38,7 +38,7 @@
             return tournament.Id;
         }
 
-        public async Task<bool> UpdateTournamentAsync(int id, TournamentFormViewModel tournamentForm)
+        public async Task<bool> UpdateTournamentAsync(int id, TournamentFormViewModel tournamentForm /*int userId*/)
         {
             var tournament = await this.dbContext.Tournaments.FindAsync(id);
 
@@ -60,7 +60,7 @@
             return true;
         }
 
-        public async Task<bool> DeleteTournamentAsync(int id)
+        public async Task<bool> DeleteTournamentAsync(int id /*int userId*/)
         {
             var tournament = await this.dbContext.Tournaments.FindAsync(id);
 
@@ -75,10 +75,9 @@
             return true;
         }
 
-        public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync()
+        public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync(/*int userId*/)
         {
             return await this.dbContext.Tournaments
-                .AsNoTracking()
                 .OrderByDescending(t => t.StartDate)
                 .Select(t => new TournamentInfoViewModel
                 {
@@ -94,10 +93,9 @@
                 .ToListAsync();
         }
 
-        public async Task<TournamentDetailsViewModel?> GetTournamentDetailsByIdAsync(int id)
+        public async Task<TournamentDetailsViewModel?> GetTournamentDetailsByIdAsync(int id /*int userId*/)
         {
             return await this.dbContext.Tournaments
-                .AsNoTracking()
                 .Where(t => t.Id == id)
                 .Select(t => new TournamentDetailsViewModel
                 {
@@ -113,10 +111,9 @@
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id)
+        public async Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id /*int userId*/)
         {
             var tournament = await this.dbContext.Tournaments
-                .AsNoTracking()
                 .FirstOrDefaultAsync(t => t.Id == id);
 
             if (tournament == null)
@@ -143,7 +140,6 @@
         public async Task PopulateDropdownsAsync(TournamentFormViewModel model)
         {
             model.TournamentNames = await this.dbContext.Tournaments
-                .AsNoTracking()
                 .Select(t => t.TournamentName)
                 .Distinct()
                 .OrderBy(name => name)
@@ -155,7 +151,6 @@
         .ToListAsync();
 
             model.TournamentTypes = await this.dbContext.Tournaments
-                .AsNoTracking()
                 .Select(t => t.TournamentType)
                 .Distinct()
                 .OrderBy(type => type)

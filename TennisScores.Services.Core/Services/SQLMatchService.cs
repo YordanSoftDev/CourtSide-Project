@@ -66,7 +66,6 @@
         public async Task<MatchFormViewModel?> GetMatchForEditByIdAsync(int id)
         {
             return await this.context.Matches
-                .AsNoTracking()
                 .Where(m => m.Id == id)
                 .ProjectTo<MatchFormViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
@@ -75,7 +74,6 @@
         public async Task<IEnumerable<MatchInfoViewModel>> GetAllMatchesForIndexAsync()
         {
               return await this.context.Matches
-                 .AsNoTracking()
                  .OrderBy(m => m.DateTime)
                  .ThenBy(m => m.Id)
                  .ProjectTo<MatchInfoViewModel>(this.mapper.ConfigurationProvider)
@@ -85,7 +83,6 @@
         public async Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync()
         {
             return await this.context.Players
-                .AsNoTracking()
                 .OrderBy(p => p.LastName)
                 .ThenBy(p => p.FirstName)
                 .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)
