@@ -18,6 +18,8 @@
 
         public MatchStatus MatchStatus { get; set; }
 
+        public required MatchRound MatchRound { get; set; }
+
         public CourtSurface CourtSurface { get; set; }
 
         public string CourtName { get; set; } = string.Empty;

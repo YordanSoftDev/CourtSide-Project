@@ -5,7 +5,7 @@
     using TennisScores.Services.Core.Contracts;
     using TennisScores.ViewModels.Tournaments;
 
-    public class TournamentsController : BaseController
+    public class TournamentsController : Controller
     {
         private readonly ITournamentService service;
 
@@ -19,7 +19,7 @@
         {
             //string? userId = this.GetUserId();
 
-            IEnumerable<TournamentInfoViewModel>? tournaments = 
+            IEnumerable<TournamentInfoViewModel>? tournaments =
                 await this.service
                 .GetAllTournamentsForIndexAsync(/*userId*/);
             return this.View(tournaments);
@@ -29,6 +29,12 @@
         public async Task<IActionResult> Details(int id) //Tournament overview
         {
             //string? userId = this.GetUserId();
+
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             TournamentDetailsViewModel? tournamentModel = await this
                 .service.GetTournamentDetailsByIdAsync(id /*userId*/);
 
@@ -44,7 +50,6 @@
         public async Task<IActionResult> Create() //Display the form to register a new tournament
         {
             TournamentFormViewModel? model = new TournamentFormViewModel();
-            await this.service.PopulateDropdownsAsync(model);
 
             return this.View(model);
         }
@@ -52,11 +57,16 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create //Process and save the new tournament submission 
-            (TournamentFormViewModel model)  
+            (TournamentFormViewModel model)
         {
+            if (model.StartDate > model.EndDate)
+            {
+                this.ModelState.AddModelError(nameof(model.EndDate),
+                    "End data cannot be earlier than start date.");
+            }
+
             if (!this.ModelState.IsValid)
             {
-                await this.service.PopulateDropdownsAsync(model);
                 return this.View(model);
             }
 
@@ -70,7 +80,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id) //Display the form to edit an existing tournament
         {
-            string? userId = this.GetUserId();
+            //string? userId = this.GetUserId();
             TournamentFormViewModel? model = await this.service
                 .GetTournamentForEditByIdAsync(id /*userId*/);
 
@@ -86,13 +96,18 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, TournamentFormViewModel model) //Process and save the updated tournament changes 
         {
+            if (model.StartDate > model.EndDate)
+            {
+                this.ModelState.AddModelError(nameof(model.EndDate),
+                    "End date cannot be earlier than start date.");
+            }
+
             if (!this.ModelState.IsValid)
             {
-                await this.service.PopulateDropdownsAsync(model);
                 return this.View(model);
             }
 
-            string? userId = this.GetUserId();
+            //string? userId = this.GetUserId();
 
             bool isUpdated = await this.service
                 .UpdateTournamentAsync(id, model /*userId*/);
@@ -108,13 +123,20 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id) //Display the delete confirmation page for a tournament
         {
-            string? userId = this.GetUserId();
-            TournamentDetailsViewModel? tournamentModel = await 
+            //string? userId = this.GetUserId();
+
+            TournamentDetailsViewModel? tournamentModel = await
                 this.service.GetTournamentDetailsByIdAsync(id /*userId*/);
 
             if (tournamentModel == null)
             {
                 return this.NotFound();
+            }
+
+            if (tournamentModel.IsActive)
+            {
+                this.TempData["ErrorMessage"] = "Active tournaments cannot be deleted.";
+                return this.RedirectToAction(nameof(Details), new { id });
             }
 
             return this.View(tournamentModel);
@@ -125,7 +147,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id) //Process and permanently delete the tournament record
         {
-            string? userId = this.GetUserId(); 
+            //string? userId = this.GetUserId(); 
             bool isDeleted = await this.service.DeleteTournamentAsync(id /*userId*/);
 
             if (!isDeleted)

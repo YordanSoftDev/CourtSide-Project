@@ -1,6 +1,6 @@
 ﻿namespace TennisScores.Services.Core.Contracts
 {
-    using TennisScores.ViewModels.Roster;
+    using TennisScores.ViewModels.Players;
 
     public interface IPlayerService
     {

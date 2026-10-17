@@ -1,4 +1,4 @@
-﻿namespace TennisScores.ViewModels.Roster
+﻿namespace TennisScores.ViewModels.Players
 {
     public class PlayerInfoViewModel
     {

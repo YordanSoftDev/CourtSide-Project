@@ -19,5 +19,7 @@ namespace TennisScores.ViewModels.Tournaments
         public  CourtSurface CourtSurface { get; set; }
 
         public  CourtEnvironment CourtEnvironment { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

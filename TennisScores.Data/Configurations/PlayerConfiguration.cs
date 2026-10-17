@@ -6,35 +6,7 @@
     public class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {
         public void Configure(EntityTypeBuilder<Player> builder)
-        {
-            builder.HasKey(p => p.Id);
-
-            builder.Property(p => p.FirstName)
-                .IsRequired(true)
-                .HasMaxLength(20);
-
-            builder.Property(p => p.LastName)
-                .IsRequired(true)
-                .HasMaxLength(20);
-
-            builder.Property(p => p.Age)
-                .IsRequired(true);
-
-            builder.Property(p => p.Weight)
-                .IsRequired(true)
-                .HasMaxLength(25);
-
-            builder.Property(p => p.Height)
-                .IsRequired(true)
-                .HasMaxLength(25);
-
-            builder.Property(p => p.Birthplace)
-                .IsRequired(true)
-                .HasMaxLength(100);
-
-            builder.Property(p => p.Rank)
-                .IsRequired(true);
-
+        {          
             builder.HasOne(p => p.Country)
                 .WithMany()
                 .HasForeignKey(p => p.CountryId)

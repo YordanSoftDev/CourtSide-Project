@@ -1,4 +1,4 @@
-﻿namespace TennisScores.ViewModels.Roster
+﻿namespace TennisScores.ViewModels.Players
 {
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System.ComponentModel.DataAnnotations;

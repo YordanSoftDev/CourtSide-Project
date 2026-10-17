@@ -1,6 +1,7 @@
 ﻿namespace TennisScores.Services.Core.Services
 {
-    using Microsoft.AspNetCore.Mvc.Rendering;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,153 +13,75 @@
 
     public class SQLTournamentService : ITournamentService
     {
-        private readonly TennisScoresDbContext dbContext;
+        private readonly TennisScoresDbContext context;
+        private readonly IMapper mapper;
 
-        public SQLTournamentService(TennisScoresDbContext dbContext)
+        public SQLTournamentService(TennisScoresDbContext context,
+            IMapper mapper)
         {
-            this.dbContext = dbContext;
+            this.context = context;
+            this.mapper = mapper;
         }
 
         public async Task<int> CreateTournamentAsync(TournamentFormViewModel tournamentForm /*int userId*/)
         {
-            var tournament = new Tournament
-            {
-                TournamentName = tournamentForm.TournamentName!,
-                Location = tournamentForm.Location!,
-                StartDate = tournamentForm.StartDate!.Value,
-                EndDate = tournamentForm.EndDate!.Value,
-                TournamentType = tournamentForm.TournamentType!,
-                CourtSurface = tournamentForm.CourtSurface!.Value,
-                CourtEnvironment = tournamentForm.CourtEnvironment!.Value
-            };
+            Tournament newTournament = this.mapper.Map<Tournament>(tournamentForm);
 
-            await this.dbContext.Tournaments.AddAsync(tournament);
-            await this.dbContext.SaveChangesAsync();
+            await this.context.Tournaments.AddAsync(newTournament);
+            await this.context.SaveChangesAsync();
 
-            return tournament.Id;
+            return newTournament.Id;
         }
 
         public async Task<bool> UpdateTournamentAsync(int id, TournamentFormViewModel tournamentForm /*int userId*/)
         {
-            var tournament = await this.dbContext.Tournaments.FindAsync(id);
+            var tournamentToUpdate = await this.context.Tournaments.FindAsync(id);
 
-            if (tournament == null)
+            if (tournamentToUpdate == null)
             {
                 return false;
             }
 
-            tournament.TournamentName = tournamentForm.TournamentName!;
-            tournament.Location = tournamentForm.Location!;
-            tournament.StartDate = tournamentForm.StartDate!.Value;
-            tournament.EndDate = tournamentForm.EndDate!.Value;
-            tournament.TournamentType = tournamentForm.TournamentType!;
-            tournament.CourtSurface = tournamentForm.CourtSurface!.Value;
-            tournament.CourtEnvironment = tournamentForm.CourtEnvironment!.Value;
+            this.mapper.Map(tournamentForm, tournamentToUpdate);
 
-            await this.dbContext.SaveChangesAsync();
+            await this.context.SaveChangesAsync();
 
             return true;
         }
 
         public async Task<bool> DeleteTournamentAsync(int id /*int userId*/)
         {
-            var tournament = await this.dbContext.Tournaments.FindAsync(id);
+            int rowsAffected = await this.context.Tournaments
+                .Where(m => m.Id == id)
+                .ExecuteDeleteAsync();
 
-            if (tournament == null)
-            {
-                return false;
-            }
-
-            this.dbContext.Tournaments.Remove(tournament);
-            await this.dbContext.SaveChangesAsync();
-
-            return true;
-        }
-
-        public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync(/*int userId*/)
-        {
-            return await this.dbContext.Tournaments
-                .OrderByDescending(t => t.StartDate)
-                .Select(t => new TournamentInfoViewModel
-                {
-                    Id = t.Id,
-                    TournamentName = t.TournamentName,
-                    Location = t.Location,
-                    StartDate = t.StartDate,
-                    EndDate = t.EndDate,
-                    TournamentType = t.TournamentType,
-                    CourtSurface = t.CourtSurface,
-                    CourtEnvironment = t.CourtEnvironment
-                })
-                .ToListAsync();
+            return rowsAffected > 0;
         }
 
         public async Task<TournamentDetailsViewModel?> GetTournamentDetailsByIdAsync(int id /*int userId*/)
         {
-            return await this.dbContext.Tournaments
+            return await this.context.Tournaments
+                .AsNoTracking()
                 .Where(t => t.Id == id)
-                .Select(t => new TournamentDetailsViewModel
-                {
-                    Id = t.Id,
-                    TournamentName = t.TournamentName,
-                    Location = t.Location,
-                    StartDate = t.StartDate,
-                    EndDate = t.EndDate,
-                    TournamentType = t.TournamentType,
-                    CourtSurface = t.CourtSurface,
-                    CourtEnvironment = t.CourtEnvironment
-                })
+                .ProjectTo<TournamentDetailsViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
         }
 
         public async Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id /*int userId*/)
         {
-            var tournament = await this.dbContext.Tournaments
-                .FirstOrDefaultAsync(t => t.Id == id);
-
-            if (tournament == null)
-            {
-                return null;
-            }
-
-            var formModel = new TournamentFormViewModel
-            {
-                TournamentName = tournament.TournamentName,
-                Location = tournament.Location,
-                StartDate = tournament.StartDate,
-                EndDate = tournament.EndDate,
-                TournamentType = tournament.TournamentType,
-                CourtSurface = tournament.CourtSurface,
-                CourtEnvironment = tournament.CourtEnvironment
-            };
-
-            await this.PopulateDropdownsAsync(formModel);
-
-            return formModel;
+            return await this.context.Tournaments
+                .AsNoTracking()
+                .Where(t => t.Id == id)
+                .ProjectTo<TournamentFormViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();         
         }
 
-        public async Task PopulateDropdownsAsync(TournamentFormViewModel model)
+        public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync(/*int userId*/)
         {
-            model.TournamentNames = await this.dbContext.Tournaments
-                .Select(t => t.TournamentName)
-                .Distinct()
-                .OrderBy(name => name)
-                .Select(name => new SelectListItem
-        {
-            Value = name,
-            Text = name
-        })
-        .ToListAsync();
-
-            model.TournamentTypes = await this.dbContext.Tournaments
-                .Select(t => t.TournamentType)
-                .Distinct()
-                .OrderBy(type => type)
-                .Select(type => new SelectListItem
-                {
-                    Value = type,
-                    Text = type
-                })
+            return await this.context.Tournaments
+                .AsNoTracking()
+                .OrderByDescending(t => t.StartDate)
+                .ProjectTo<TournamentInfoViewModel>(this.mapper.ConfigurationProvider)     
                 .ToListAsync();
         }
     }

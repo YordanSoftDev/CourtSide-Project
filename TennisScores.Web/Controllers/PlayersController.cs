@@ -1,9 +1,8 @@
 ﻿namespace TennisScores.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using TennisScores.ViewModels.Roster;
+    using TennisScores.ViewModels.Players;
     using TennisScores.Services.Core.Contracts;
-    using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
     public class PlayersController : Controller
     {
@@ -15,7 +14,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> MyPlayers() 
+        public async Task<IActionResult> Index() 
         {
             IEnumerable<PlayerInfoViewModel> players = await
                 this.service.GetAllPlayersForIndexAsync();

@@ -15,7 +15,5 @@ namespace TennisScores.Services.Core.Contracts
         public Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id /*int userId*/);
 
         public Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync(/*int userId*/);
-
-        Task PopulateDropdownsAsync(TournamentFormViewModel model);
     }
 }

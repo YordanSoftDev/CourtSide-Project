@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using TennisScores.ViewModels.Matches;
-    using TennisScores.ViewModels.Roster;
+    using TennisScores.ViewModels.Players;
     using TennisScores.Data.Models;
 
     public class MatchProfile : Profile

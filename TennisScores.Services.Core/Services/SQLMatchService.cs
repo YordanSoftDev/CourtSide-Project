@@ -7,7 +7,7 @@
     using TennisScores.Data.Persistance;
     using TennisScores.Services.Core.Contracts;
     using TennisScores.ViewModels.Matches;
-    using TennisScores.ViewModels.Roster;
+    using TennisScores.ViewModels.Players;
 
     public class SQLMatchService : IMatchService
     {
@@ -35,7 +35,7 @@
         {
             Match? matchToUpdate = await this.context.Matches.FindAsync(id);
 
-            if(matchToUpdate == null)
+            if (matchToUpdate == null)
             {
                 return false;
             }
@@ -59,6 +59,7 @@
         public async Task<MatchDetailsViewModel?> GetMatchDetailsByIdAsync(int id)
         {
             return await this.context.Matches
+                .AsNoTracking()
                 .Where(m => m.Id == id)
                 .ProjectTo<MatchDetailsViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
@@ -66,6 +67,7 @@
         public async Task<MatchFormViewModel?> GetMatchForEditByIdAsync(int id)
         {
             return await this.context.Matches
+                .AsNoTracking()
                 .Where(m => m.Id == id)
                 .ProjectTo<MatchFormViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
@@ -73,16 +75,18 @@
 
         public async Task<IEnumerable<MatchInfoViewModel>> GetAllMatchesForIndexAsync()
         {
-              return await this.context.Matches
-                 .OrderBy(m => m.DateTime)
-                 .ThenBy(m => m.Id)
-                 .ProjectTo<MatchInfoViewModel>(this.mapper.ConfigurationProvider)
-                 .ToListAsync();
+            return await this.context.Matches
+                .AsNoTracking()
+               .OrderBy(m => m.DateTime)
+               .ThenBy(m => m.Id)
+               .ProjectTo<MatchInfoViewModel>(this.mapper.ConfigurationProvider)
+               .ToListAsync();
         }
 
         public async Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync()
         {
             return await this.context.Players
+                .AsNoTracking()
                 .OrderBy(p => p.LastName)
                 .ThenBy(p => p.FirstName)
                 .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)

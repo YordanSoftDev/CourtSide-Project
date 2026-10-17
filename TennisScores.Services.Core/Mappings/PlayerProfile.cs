@@ -1,7 +1,7 @@
 ﻿namespace TennisScores.Services.Core.Mappings
 {
     using AutoMapper;
-    using TennisScores.ViewModels.Roster;
+    using TennisScores.ViewModels.Players;
     using TennisScores.Data.Models;
 
     public class PlayerProfile : Profile

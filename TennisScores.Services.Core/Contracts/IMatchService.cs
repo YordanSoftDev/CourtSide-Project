@@ -1,7 +1,7 @@
 ﻿namespace TennisScores.Services.Core.Contracts
 {
     using TennisScores.ViewModels.Matches;
-    using TennisScores.ViewModels.Roster;
+    using TennisScores.ViewModels.Players;
 
     public interface IMatchService
     {

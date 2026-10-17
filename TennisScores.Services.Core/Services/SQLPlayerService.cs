@@ -3,10 +3,10 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
-    using TennisScores.ViewModels.Roster;
-    using TennisScores.Data.Persistance;
     using TennisScores.Data.Models;
+    using TennisScores.Data.Persistance;
     using TennisScores.Services.Core.Contracts;
+    using TennisScores.ViewModels.Players;
 
     public class SQLPlayerService : IPlayerService
     {
@@ -58,6 +58,7 @@
         public async Task<PlayerDetailsViewModel?> GetPlayerDetailsByIdAsync(int id)
         {
             return await this.context.Players
+                .AsNoTracking()
                 .Where(m => m.Id == id)
                 .ProjectTo<PlayerDetailsViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
@@ -74,6 +75,7 @@
         public async Task<IEnumerable<PlayerInfoViewModel>> GetAllPlayersForIndexAsync()
         {
             return await this.context.Players
+                .AsNoTracking()
                 .OrderBy(p => p.Id)
                 .ProjectTo<PlayerInfoViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
