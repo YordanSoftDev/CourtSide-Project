@@ -10,7 +10,7 @@ namespace TennisScores.ViewModels.Matches
         [Range(1, 80)]
         [Display(Name = "First Player")]
         public int? FirstPlayerId { get; set; }
-        
+
         [Required(ErrorMessage = "Please select a Second Player.")]
         [Display(Name = "Second Player")]
         public int? SecondPlayerId { get; set; }
@@ -32,7 +32,7 @@ namespace TennisScores.ViewModels.Matches
         public MatchStatus? MatchStatus { get; set; }
 
         [Required(ErrorMessage = "Please select a Match Round.")]
-        [EnumDataType(typeof(MatchRound), 
+        [EnumDataType(typeof(MatchRound),
             ErrorMessage = "Please select a valid option.")]
         [Display(Name = "Match Round")]
         public MatchRound? MatchRound { get; set; }

@@ -80,6 +80,11 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id) //Display the form to edit an existing tournament
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             //string? userId = this.GetUserId();
             TournamentFormViewModel? model = await this.service
                 .GetTournamentForEditByIdAsync(id /*userId*/);
@@ -96,6 +101,11 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, TournamentFormViewModel model) //Process and save the updated tournament changes 
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             if (model.StartDate > model.EndDate)
             {
                 this.ModelState.AddModelError(nameof(model.EndDate),
@@ -123,6 +133,11 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id) //Display the delete confirmation page for a tournament
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             //string? userId = this.GetUserId();
 
             TournamentDetailsViewModel? tournamentModel = await

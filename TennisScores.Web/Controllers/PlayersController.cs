@@ -1,8 +1,8 @@
 ﻿namespace TennisScores.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using TennisScores.ViewModels.Players;
     using TennisScores.Services.Core.Contracts;
+    using TennisScores.ViewModels.Players;
 
     public class PlayersController : Controller
     {
@@ -14,7 +14,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index() 
+        public async Task<IActionResult> Index()
         {
             IEnumerable<PlayerInfoViewModel> players = await
                 this.service.GetAllPlayersForIndexAsync();
@@ -25,6 +25,11 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             PlayerDetailsViewModel? playerDetails = await
                 this.service.GetPlayerDetailsByIdAsync(id);
 
@@ -63,6 +68,11 @@
         [HttpGet]
         public async Task<IActionResult?> Edit(int id)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             PlayerFormViewModel? playerForm = await
                 this.service.GetPlayerForEditByIdAsync(id);
 
@@ -78,6 +88,11 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PlayerFormViewModel playerForm)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             if (!this.ModelState.IsValid)
             {
                 return this.View(playerForm);
@@ -98,6 +113,11 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             PlayerDetailsViewModel? playerDetails = await this.service
                 .GetPlayerDetailsByIdAsync(id);
 

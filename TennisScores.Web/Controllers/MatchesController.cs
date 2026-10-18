@@ -2,9 +2,9 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using TennisScores.ViewModels.Matches;
     using TennisScores.Common.MatchEnumerations;
     using TennisScores.Services.Core.Contracts;
+    using TennisScores.ViewModels.Matches;
 
     public class MatchesController : Controller
     {
@@ -18,7 +18,7 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<MatchInfoViewModel> matches = await 
+            IEnumerable<MatchInfoViewModel> matches = await
                 this.service.GetAllMatchesForIndexAsync();
 
             return this.View(matches);
@@ -27,10 +27,15 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            MatchDetailsViewModel? matchDetails = await 
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
+            MatchDetailsViewModel? matchDetails = await
                 this.service.GetMatchDetailsByIdAsync(id);
 
-            if(matchDetails == null)
+            if (matchDetails == null)
             {
                 return this.NotFound();
             }
@@ -62,7 +67,7 @@
         {
             bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
 
-            if(isCompleted && !matchForm.WinnerId.HasValue)
+            if (isCompleted && !matchForm.WinnerId.HasValue)
             {
                 this.ModelState.AddModelError(nameof(matchForm.WinnerId),
                     "A winner must be selected when " +
@@ -85,17 +90,22 @@
             int createdMatchId = await this.service
                 .CreateMatchAsync(matchForm);
 
-            return this.RedirectToAction(nameof(Details), 
+            return this.RedirectToAction(nameof(Details),
                 new { id = createdMatchId });
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             MatchFormViewModel? matchForm = await this.service
                 .GetMatchForEditByIdAsync(id);
 
-            if(matchForm == null)
+            if (matchForm == null)
             {
                 return this.NotFound();
             }
@@ -104,9 +114,14 @@
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]      
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, MatchFormViewModel matchForm)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
 
             if (isCompleted && !matchForm.WinnerId.HasValue)
@@ -128,22 +143,27 @@
 
             bool isUpdated = await this.service.UpdateMatchAsync(id, matchForm);
 
-            if(!isUpdated)
+            if (!isUpdated)
             {
                 return this.NotFound();
             }
 
-            return this.RedirectToAction(nameof(Details), 
+            return this.RedirectToAction(nameof(Details),
                 new { id = id });
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            if (id <= 0)
+            {
+                return this.BadRequest();
+            }
+
             MatchDetailsViewModel? matchDetails = await this.service
                 .GetMatchDetailsByIdAsync(id);
 
-            if(matchDetails == null)
+            if (matchDetails == null)
             {
                 return this.NotFound();
             }
@@ -157,7 +177,7 @@
         {
             bool isDeleted = await this.service.DeleteMatchAsync(id);
 
-            if(!isDeleted)
+            if (!isDeleted)
             {
                 return this.NotFound();
             }

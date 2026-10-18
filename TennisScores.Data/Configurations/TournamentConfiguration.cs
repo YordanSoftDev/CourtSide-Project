@@ -14,10 +14,10 @@
             builder.Property(t => t.CourtEnvironment)
                .HasConversion<string>();
 
-                builder.HasMany(v => v.TournamentVenues)
-               .WithOne(tv => tv.Tournament)
-               .HasForeignKey(tv => tv.TournamentId)
-               .OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(v => v.TournamentVenues)
+           .WithOne(tv => tv.Tournament)
+           .HasForeignKey(tv => tv.TournamentId)
+           .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

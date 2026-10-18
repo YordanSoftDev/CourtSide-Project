@@ -16,9 +16,9 @@ namespace TennisScores.ViewModels.Tournaments
 
         public string TournamentType { get; set; } = string.Empty;
 
-        public  CourtSurface CourtSurface { get; set; }
+        public CourtSurface CourtSurface { get; set; }
 
-        public  CourtEnvironment CourtEnvironment { get; set; }
+        public CourtEnvironment CourtEnvironment { get; set; }
 
         public bool IsActive { get; set; }
     }

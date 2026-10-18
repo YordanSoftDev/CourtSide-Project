@@ -1,19 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using TennisScores.Data.Persistance;
-using TennisScores.Services.Core.Services;
 using TennisScores.Services.Core.Contracts;
+using TennisScores.Services.Core.Services;
+using Microsoft.AspNetCore.Identity;
+using TennisScores.Web.Data;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddAutoMapper(cfg =>
-    cfg.AddMaps(typeof(SQLMatchService).Assembly));
-
-builder.Services.AddScoped<IMatchService, SQLMatchService>();
-builder.Services.AddScoped<IPlayerService, SQLPlayerService>();
-builder.Services.AddScoped<ITournamentService, SQLTournamentService>();
 
 string? connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");
@@ -27,6 +22,15 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 builder.Services.AddDbContext<TennisScoresDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<TennisScoresDbContext>();
+
+builder.Services.AddAutoMapper(cfg =>
+    cfg.AddMaps(typeof(SQLMatchService).Assembly));
+
+builder.Services.AddScoped<IMatchService, SQLMatchService>();
+builder.Services.AddScoped<IPlayerService, SQLPlayerService>();
+builder.Services.AddScoped<ITournamentService, SQLTournamentService>();
 
 WebApplication? app = builder.Build();
 

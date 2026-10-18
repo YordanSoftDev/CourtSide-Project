@@ -8,7 +8,7 @@
     {
         [Required(ErrorMessage = "Please select or enter a " +
                                  "tournament name.")]
-        [StringLength(100, MinimumLength = 2, 
+        [StringLength(100, MinimumLength = 2,
             ErrorMessage = "Tournament name must be between 2 and " +
                            "100 characters.")]
         [Display(Name = "Tournament Name")]
@@ -49,6 +49,6 @@
 
         [Required(ErrorMessage = "Please select a court environment.")]
         [Display(Name = "Court Environment")]
-        public CourtEnvironment? CourtEnvironment { get; set; }      
+        public CourtEnvironment? CourtEnvironment { get; set; }
     }
 }

@@ -6,7 +6,7 @@
     public class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {
         public void Configure(EntityTypeBuilder<Player> builder)
-        {          
+        {
             builder.HasOne(p => p.Country)
                 .WithMany()
                 .HasForeignKey(p => p.CountryId)

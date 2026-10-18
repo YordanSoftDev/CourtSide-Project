@@ -11,8 +11,8 @@ namespace TennisScores.Data.Configurations
             builder.HasOne(c => c.Player)
                 .WithMany()
                 .HasForeignKey(c => c.PlayerId)
-                .OnDelete(DeleteBehavior.Restrict); 
-            
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

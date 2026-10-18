@@ -40,9 +40,9 @@
         [MaxLength(20)]
         public required CourtEnvironment CourtEnvironment { get; set; }
 
-        public required bool IsActive { get; set; } 
+        public required bool IsActive { get; set; }
 
         public virtual ICollection<TournamentVenue> TournamentVenues { get; set; } =
-            new HashSet<TournamentVenue>(); 
+            new HashSet<TournamentVenue>();
     }
 }

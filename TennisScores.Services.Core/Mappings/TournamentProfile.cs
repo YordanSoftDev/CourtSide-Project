@@ -7,7 +7,7 @@
 
     public class TournamentProfile : Profile
     {
-        public TournamentProfile() 
+        public TournamentProfile()
         {
             this.CreateMap<TournamentFormViewModel, Tournament>();
             this.CreateMap<Tournament, TournamentFormViewModel>();

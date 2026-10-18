@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Security.Claims;
 
-    [Authorize] 
+    [Authorize]
     public abstract class BaseController : Controller
     {
         protected bool IsUserAuthenticated =>

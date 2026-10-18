@@ -2,8 +2,8 @@
 {
     public enum CourtSurface
     {
-        Grass = 0, 
-        Clay = 1, 
+        Grass = 0,
+        Clay = 1,
         Hard = 2,
         Carpet = 3
     }

@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     public class PlayerFormViewModel
     {
-        
+
         [Required(ErrorMessage = "First Name is required.")]
         [StringLength(20, MinimumLength = 2)]
         [RegularExpression(@"^[A-Z][a-z]+$",

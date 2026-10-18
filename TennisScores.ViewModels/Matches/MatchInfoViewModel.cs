@@ -31,7 +31,7 @@
         public int TournamentId { get; set; }
 
         public string TournamentName { get; set; } = string.Empty;
-        
+
         public string? ScoreResult { get; set; }
 
         public int? WinnerId { get; set; }

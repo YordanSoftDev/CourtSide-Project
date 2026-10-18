@@ -11,7 +11,7 @@
 
         [ForeignKey(nameof(TournamentId))]
         public virtual Tournament Tournament { get; set; } = null!;
-        
+
         public int VenueId { get; set; }
 
         [ForeignKey(nameof(VenueId))]

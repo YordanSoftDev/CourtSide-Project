@@ -73,7 +73,7 @@
                 .AsNoTracking()
                 .Where(t => t.Id == id)
                 .ProjectTo<TournamentFormViewModel>(this.mapper.ConfigurationProvider)
-                .FirstOrDefaultAsync();         
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync(/*int userId*/)
@@ -81,7 +81,7 @@
             return await this.context.Tournaments
                 .AsNoTracking()
                 .OrderByDescending(t => t.StartDate)
-                .ProjectTo<TournamentInfoViewModel>(this.mapper.ConfigurationProvider)     
+                .ProjectTo<TournamentInfoViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
     }

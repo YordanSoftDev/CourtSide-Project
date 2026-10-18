@@ -2,7 +2,7 @@
 {
     using TennisScores.Common.MatchEnumerations;
 
-    public class MatchDetailsViewModel 
+    public class MatchDetailsViewModel
     {
         public int Id { get; set; }
 
@@ -28,13 +28,13 @@
 
         public string VenueName { get; set; } = string.Empty;
 
-        public int TournamentId { get; set; } 
+        public int TournamentId { get; set; }
 
         public string TournamentName { get; set; } = string.Empty;
 
         public string? ScoreResult { get; set; }
-        
-        public int? WinnerId { get; set; } 
+
+        public int? WinnerId { get; set; }
 
         public string? WinnerFullName { get; set; }
 

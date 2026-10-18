@@ -7,7 +7,7 @@
 
     public class MatchProfile : Profile
     {
-        public MatchProfile() 
+        public MatchProfile()
         {
             this.CreateMap<MatchFormViewModel, Match>();
             this.CreateMap<Match, MatchFormViewModel>();
@@ -34,21 +34,21 @@
 
 
             this.CreateMap<Match, MatchInfoViewModel>()
-                .ForMember(dest => dest.VenueName, 
+                .ForMember(dest => dest.VenueName,
                 opt => opt
                 .MapFrom(src => src.Venue.Name))
-                .ForMember(dest => dest.TournamentName, 
+                .ForMember(dest => dest.TournamentName,
                 opt => opt
                 .MapFrom(src => src.Tournament.TournamentName))
-                .ForMember(dest => dest.FirstPlayerFullName, 
+                .ForMember(dest => dest.FirstPlayerFullName,
                 opt => opt
                 .MapFrom(src => $"{src.FirstPlayer.FirstName} " +
                 $"{src.FirstPlayer.LastName}"))
-                .ForMember(dest => dest.SecondPlayerFullName, 
+                .ForMember(dest => dest.SecondPlayerFullName,
                 opt => opt
                 .MapFrom(src => $"{src.SecondPlayer.FirstName} " +
                 $"{src.SecondPlayer.LastName}"))
-                .ForMember(dest => dest.WinnerFullName, 
+                .ForMember(dest => dest.WinnerFullName,
                 opt => opt
                 .MapFrom(src => src.Winner != null ? $"{src.Winner.FirstName} " +
                 $"{src.Winner.LastName}" : null));

@@ -10,7 +10,7 @@ namespace TennisScores.Data.Models
         [MaxLength(100)]
         public required string Name { get; set; }
 
-        public virtual ICollection<TournamentVenue> TournamentVenues { get; set; } = 
+        public virtual ICollection<TournamentVenue> TournamentVenues { get; set; } =
             new HashSet<TournamentVenue>();
     }
 }
