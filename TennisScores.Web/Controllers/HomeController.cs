@@ -1,10 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using TennisScores.Web.Models;
-
 namespace TennisScores.Web.Controllers
 {
-    public class HomeController : Controller
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+    using TennisScores.Web.ViewModels;
+
+    [AllowAnonymous]
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {

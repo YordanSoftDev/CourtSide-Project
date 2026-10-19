@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TennisScores.Data.Models
+﻿namespace TennisScores.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using static TennisScores.Common.ValidationConstants.Venue;
     public class Venue
     {
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(NameMaxLength)]
         public required string Name { get; set; }
 
         public virtual ICollection<TournamentVenue> TournamentVenues { get; set; } =

@@ -4,7 +4,7 @@
     using TennisScores.Services.Core.Contracts;
     using TennisScores.ViewModels.Players;
 
-    public class PlayersController : Controller
+    public class PlayersController : BaseController
     {
         private readonly IPlayerService service;
 

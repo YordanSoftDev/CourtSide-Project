@@ -3,14 +3,14 @@
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System.ComponentModel.DataAnnotations;
     using TennisScores.Common.MatchEnumerations;
+    using static TennisScores.Common.ValidationConstants.Tournament;
 
     public class TournamentFormViewModel
     {
         [Required(ErrorMessage = "Please select or enter a " +
                                  "tournament name.")]
-        [StringLength(100, MinimumLength = 2,
-            ErrorMessage = "Tournament name must be between 2 and " +
-                           "100 characters.")]
+        [StringLength(TournamentNameMaxLength, MinimumLength = TournamentNameMinLength,
+            ErrorMessage = "Tournament name must be between 2 and " + "100 characters.")]
         [Display(Name = "Tournament Name")]
         public string? TournamentName { get; set; }
 
@@ -18,7 +18,7 @@
                         = new List<SelectListItem>();
 
         [Required(ErrorMessage = "Location is required.")]
-        [StringLength(100, MinimumLength = 6,
+        [StringLength(LocationMaxLength, MinimumLength = LocationMinLength,
             ErrorMessage = "Location must be between 6 " +
                            "and 100 characters.")]
         public string? Location { get; set; }
@@ -34,9 +34,8 @@
         public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "Tournament type is required.")]
-        [StringLength(50, MinimumLength = 3,
-            ErrorMessage = "Tournament type must be between 3 and " +
-                           "50 characters.")]
+        [StringLength(TournamentTypeMaxLength, MinimumLength = TournamentTypeMinLength,
+            ErrorMessage = "Tournament type must be between 3 and " + "50 characters.")]
         [Display(Name = "Tournament Type")]
         public string? TournamentType { get; set; }
 

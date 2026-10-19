@@ -1,4 +1,4 @@
-namespace TennisScores.Web.Models
+namespace TennisScores.Web.ViewModels
 {
     public class ErrorViewModel
     {

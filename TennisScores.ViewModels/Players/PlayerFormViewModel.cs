@@ -2,18 +2,19 @@
 {
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System.ComponentModel.DataAnnotations;
+    using static TennisScores.Common.ValidationConstants.Player;
     public class PlayerFormViewModel
     {
 
         [Required(ErrorMessage = "First Name is required.")]
-        [StringLength(20, MinimumLength = 2)]
+        [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength)]
         [RegularExpression(@"^[A-Z][a-z]+$",
          ErrorMessage = "First name must start with an uppercase letter " +
                         "followed by one or more lowercase letters.")]
         public string? FirstName { get; set; }
 
         [Required(ErrorMessage = "Last Name is required.")]
-        [StringLength(20, MinimumLength = 2)]
+        [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength)]
         [RegularExpression(@"^[A-Z][a-z]+$",
          ErrorMessage = "Last name must start with an uppercase letter " +
                         "followed by one or more lowercase letters.")]
@@ -25,12 +26,14 @@
         public int? Age { get; set; }
 
         [Required(ErrorMessage = "Weight is required.")]
+        [StringLength(WeightMaxLength, MinimumLength = WeightMinLength)]
         [RegularExpression(@"^\d{2,3} lbs/\(\d{2,3}kg\)$",
             ErrorMessage = "Weight value must be in the format " +
                            "170 lbs/(77kg)")]
         public string? Weight { get; set; }
 
         [Required(ErrorMessage = "Height is required.")]
+        [StringLength(HeightMaxLength, MinimumLength = HeightMinLength)]
         [RegularExpression(@"^\d{1}'\d{1,2}""/\(\d{3}cm\)$",
             ErrorMessage = "Height value must be in the format " +
                            "6'3/(191cm)")]
@@ -43,7 +46,7 @@
 
 
         [Required(ErrorMessage = "Birthplace is required.")]
-        [StringLength(100, MinimumLength = 6,
+        [StringLength(BirthplaceMaxLength, MinimumLength = BirthplaceMinLength,
             ErrorMessage = "Birthplace's length must be between " +
                                        "6 and 100 symbols.")]
         public string? Birthplace { get; set; }

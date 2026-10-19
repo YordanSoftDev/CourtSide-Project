@@ -5,7 +5,7 @@
     using TennisScores.Services.Core.Contracts;
     using TennisScores.ViewModels.Tournaments;
 
-    public class TournamentsController : Controller
+    public class TournamentsController : BaseController
     {
         private readonly ITournamentService service;
 

@@ -1,7 +1,7 @@
-﻿using TennisScores.Common.MatchEnumerations;
-
-namespace TennisScores.ViewModels.Tournaments
+﻿namespace TennisScores.ViewModels.Tournaments
 {
+    using TennisScores.Common.MatchEnumerations;
+
     public class TournamentDetailsViewModel
     {
         public int Id { get; set; }

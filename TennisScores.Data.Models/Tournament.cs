@@ -3,18 +3,19 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using TennisScores.Common.MatchEnumerations;
+    using static TennisScores.Common.ValidationConstants.Tournament;
     public class Tournament
     {
         public int Id { get; set; }
 
         //example value Almaty Open
         [Required]
-        [MaxLength(100)]
+        [MaxLength(TournamentNameMaxLength)]
         public required string TournamentName { get; set; }
 
         //example value Almaty, Kazakhstan
         [Required]
-        [MaxLength(100)]
+        [MaxLength(LocationMaxLength)]
         public required string Location { get; set; }
 
         //example value 19 October 2026
@@ -29,15 +30,15 @@
 
         //example value ATP 250
         [Required]
-        [MaxLength(50)]
+        [MaxLength(TournamentTypeMaxLength)]
         public required string TournamentType { get; set; }
 
         //the variants are Grass, Clay, Hard, Carpet 
-        [MaxLength(20)]
+        [MaxLength(CourtSurfaceMaxLength)]
         public required CourtSurface CourtSurface { get; set; }
 
         //the variants are Indoor, Outdoor
-        [MaxLength(20)]
+        [MaxLength(CourtEnvironmentMaxLength)]
         public required CourtEnvironment CourtEnvironment { get; set; }
 
         public required bool IsActive { get; set; }

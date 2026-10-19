@@ -6,7 +6,7 @@
     using TennisScores.Services.Core.Contracts;
     using TennisScores.ViewModels.Matches;
 
-    public class MatchesController : Controller
+    public class MatchesController : BaseController
     {
         private readonly IMatchService service;
 
@@ -18,6 +18,8 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            string? userId = this.GetUserId();
+
             IEnumerable<MatchInfoViewModel> matches = await
                 this.service.GetAllMatchesForIndexAsync();
 

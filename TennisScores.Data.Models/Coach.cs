@@ -1,18 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TennisScores.Data.Models
+﻿namespace TennisScores.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using static TennisScores.Common.ValidationConstants.Coach;
+
     public class Coach
     {
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(FirstNameMaxLength)]
         public required string FirstName { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(LastNameMaxLength)]
         public required string LastName { get; set; }
 
         public required int PlayerId { get; set; }

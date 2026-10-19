@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-using TennisScores.Common.MatchEnumerations;
-
-namespace TennisScores.ViewModels.Matches
+﻿namespace TennisScores.ViewModels.Matches
 {
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using System.ComponentModel.DataAnnotations;
+    using TennisScores.Common.MatchEnumerations;
+    using static TennisScores.Common.ValidationConstants.Match;
+
+
     public class MatchFormViewModel
     {
         [Required(ErrorMessage = "Please select a First Player.")]
@@ -38,6 +40,8 @@ namespace TennisScores.ViewModels.Matches
         public MatchRound? MatchRound { get; set; }
 
         [Required(ErrorMessage = "Please select a Court Name.")]
+        [StringLength(CourtNameMaxLength, MinimumLength = CourtNameMinLength,
+            ErrorMessage = "Court Name must be between 2 and 100 characters long.")]
         [Display(Name = "Court Name")]
         public string? CourtName { get; set; }
 
@@ -54,6 +58,7 @@ namespace TennisScores.ViewModels.Matches
             new List<SelectListItem>();
 
         [Display(Name = "Score Result")]
+        [MaxLength(ScoreResultMaxLength, ErrorMessage = "Score Result cannot exceed 100 characters.")]
         public string? ScoreResult { get; set; }
 
         //The user can select an option from the dropdown menu 
