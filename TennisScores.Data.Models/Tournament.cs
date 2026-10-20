@@ -6,6 +6,7 @@
     using static TennisScores.Common.ValidationConstants.Tournament;
     public class Tournament
     {
+        [Key]
         public int Id { get; set; }
 
         //example value Almaty Open
@@ -43,7 +44,7 @@
 
         public required bool IsActive { get; set; }
 
-        public virtual ICollection<TournamentVenue> TournamentVenues { get; set; } =
+        public virtual  ICollection<TournamentVenue> TournamentVenues { get; set; } =
             new HashSet<TournamentVenue>();
     }
 }

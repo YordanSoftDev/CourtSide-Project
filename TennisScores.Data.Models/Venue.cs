@@ -4,6 +4,7 @@
     using static TennisScores.Common.ValidationConstants.Venue;
     public class Venue
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

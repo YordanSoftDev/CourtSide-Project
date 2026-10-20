@@ -5,11 +5,10 @@
     using TennisScores.Data.Models;
     public class CountryConfiguration : IEntityTypeConfiguration<Country>
     {
-
-        public void Configure(EntityTypeBuilder<Country> builder)
-        {
-            builder.HasData(
-                 new Country { Id = 1, Name = "Afghanistan" },
+        public static IEnumerable<Country> DefaultCountries =>
+             new List<Country> 
+             {
+                  new Country { Id = 1, Name = "Afghanistan" },
                   new Country { Id = 2, Name = "Albania" },
                   new Country { Id = 3, Name = "Algeria" },
                   new Country { Id = 4, Name = "Andorra" },
@@ -204,7 +203,10 @@
                   new Country { Id = 193, Name = "Yemen" },
                   new Country { Id = 194, Name = "Zambia" },
                   new Country { Id = 195, Name = "Zimbabwe" }
-                );
+             };
+        public void Configure(EntityTypeBuilder<Country> builder)
+        {
+            builder.HasData(DefaultCountries);             
         }
     }
 }

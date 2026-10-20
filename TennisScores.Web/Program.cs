@@ -1,13 +1,10 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TennisScores.Data.Persistance;
 using TennisScores.Services.Core.Contracts;
 using TennisScores.Services.Core.Services;
-using TennisScores.Web.Data;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

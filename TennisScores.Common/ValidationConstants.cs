@@ -44,7 +44,7 @@
             public const int HeightMinLength = 2;
             public const int HeightMaxLength = 25;
 
-            public const int BirthplaceMinLength = 2;
+            public const int BirthplaceMinLength = 6;
             public const int BirthplaceMaxLength = 100;
         }
 

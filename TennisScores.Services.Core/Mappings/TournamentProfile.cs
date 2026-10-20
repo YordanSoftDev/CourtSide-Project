@@ -2,7 +2,6 @@
 {
     using AutoMapper;
     using TennisScores.Data.Models;
-    using TennisScores.ViewModels.Players;
     using TennisScores.ViewModels.Tournaments;
 
     public class TournamentProfile : Profile

@@ -1,11 +1,13 @@
 ﻿namespace TennisScores.Data.Models
 {
+    using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using static TennisScores.Common.ValidationConstants.Coach;
 
     public class Coach
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -19,6 +21,7 @@
         public required int PlayerId { get; set; }
 
         [ForeignKey(nameof(PlayerId))]
-        public Player Player { get; set; } = null!;
+        [DeleteBehavior(DeleteBehavior.Restrict)]
+        public virtual Player Player { get; set; } = null!;
     }
 }

@@ -532,6 +532,40 @@ namespace TennisScores.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Tournaments",
+                columns: new[] { "Id", "CourtEnvironment", "CourtSurface", "EndDate", "IsActive", "Location", "StartDate", "TournamentName", "TournamentType" },
+                values: new object[,]
+                {
+                    { 1, "Outdoor", "Grass", new DateTime(2026, 7, 12, 0, 0, 0, 0, DateTimeKind.Utc), true, "London, United Kingdom", new DateTime(2026, 6, 29, 0, 0, 0, 0, DateTimeKind.Utc), "Wimbledon", "Grand Slam" },
+                    { 2, "Outdoor", "Clay", new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc), true, "Paris, France", new DateTime(2026, 5, 25, 0, 0, 0, 0, DateTimeKind.Utc), "Roland Garros", "Grand Slam" },
+                    { 3, "Outdoor", "Hard", new DateTime(2026, 9, 13, 0, 0, 0, 0, DateTimeKind.Utc), true, "New York, USA", new DateTime(2026, 8, 31, 0, 0, 0, 0, DateTimeKind.Utc), "US Open", "Grand Slam" },
+                    { 4, "Indoor", "Hard", new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc), true, "Almaty, Kazakhstan", new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc), "Almaty Open", "ATP 250" },
+                    { 5, "Outdoor", "Hard", new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc), true, "Melbourne, Australia", new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc), "Australian Open", "Grand Slam" },
+                    { 6, "Outdoor", "Clay", new DateTime(2026, 4, 19, 0, 0, 0, 0, DateTimeKind.Utc), true, "Roquebrune-Cap-Martin, France", new DateTime(2026, 4, 12, 0, 0, 0, 0, DateTimeKind.Utc), "Monte-Carlo Masters", "ATP 1000" },
+                    { 7, "Outdoor", "Clay", new DateTime(2026, 5, 17, 0, 0, 0, 0, DateTimeKind.Utc), true, "Madrid, Spain", new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc), "Mutua Madrid Open", "ATP 1000" },
+                    { 8, "Outdoor", "Clay", new DateTime(2026, 5, 24, 0, 0, 0, 0, DateTimeKind.Utc), true, "Rome, Italy", new DateTime(2026, 5, 11, 0, 0, 0, 0, DateTimeKind.Utc), "Italian Open", "ATP 1000" },
+                    { 9, "Outdoor", "Grass", new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc), true, "London, United Kingdom", new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc), "Cinch Championships", "ATP 500" },
+                    { 10, "Indoor", "Hard", new DateTime(2026, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), true, "Basel, Switzerland", new DateTime(2026, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc), "Swiss Indoors Basel", "ATP 500" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Venues",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "All England Lawn Tennis and Croquet Club" },
+                    { 2, "Stade Roland Garros" },
+                    { 3, "USTA Billie Jean King National Tennis Center" },
+                    { 4, "Almaty Arena" },
+                    { 5, "Melbourne Park" },
+                    { 6, "Monte-Carlo Country Club" },
+                    { 7, "Caja Mágica" },
+                    { 8, "Foro Italico" },
+                    { 9, "Queen's Club" },
+                    { 10, "St. Jakobshalle" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Players",
                 columns: new[] { "Id", "Age", "Birthplace", "CountryId", "FirstName", "Height", "LastName", "Rank", "Weight" },
                 values: new object[,]
@@ -616,6 +650,23 @@ namespace TennisScores.Data.Migrations
                     { 78, 29, "Bondy, France", 61, "Quentin", "6'4\"/(193cm)", "Halys", 48, "180 lbs/(82kg)" },
                     { 79, 25, "Haarlem, Netherlands", 123, "Jesper", "5'11\"/(180cm)", "de Jong", 95, "159 lbs/(72kg)" },
                     { 80, 31, "Nottingham, United Kingdom", 186, "Billy", "6'2\"/(188cm)", "Harris", 105, "176 lbs/(80kg)" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Matches",
+                columns: new[] { "Id", "CourtEnvironment", "CourtName", "CourtSurface", "DateTime", "FirstPlayerId", "MatchRound", "MatchStatus", "ScoreResult", "SecondPlayerId", "TournamentId", "VenueId", "WinnerId" },
+                values: new object[,]
+                {
+                    { 1, 1, "Centre Court", "Grass", new DateTime(2026, 7, 12, 15, 0, 0, 0, DateTimeKind.Utc), 1, "Final", "Completed", "6-4 6-7 7-6 6-3", 2, 1, 1, 1 },
+                    { 2, 1, "Court No. 1", "Grass", new DateTime(2026, 7, 10, 14, 30, 0, 0, DateTimeKind.Utc), 3, "Semifinal", "Completed", "6-3 6-2 6-4", 4, 1, 1, 3 },
+                    { 3, 1, "Court Philippe-Chatrier", "Clay", new DateTime(2026, 6, 7, 16, 0, 0, 0, DateTimeKind.Utc), 5, "Final", "Completed", "6-1 6-3 4-6 5-7 6-2", 6, 2, 2, 5 },
+                    { 4, 1, "Court Suzanne-Lenglen", "Clay", new DateTime(2026, 6, 5, 13, 0, 0, 0, DateTimeKind.Utc), 1, "Quarterfinal", "Completed", "7-5 6-4 6-2", 4, 2, 2, 1 },
+                    { 5, 1, "Arthur Ashe Stadium", "Hard", new DateTime(2026, 9, 13, 20, 0, 0, 0, DateTimeKind.Utc), 2, "Final", "Completed", "6-3 3-6 6-3 7-6", 3, 3, 3, 2 },
+                    { 6, 1, "Louis Armstrong Stadium", "Hard", new DateTime(2026, 9, 11, 18, 0, 0, 0, DateTimeKind.Utc), 5, "Semifinal", "Completed", "6-4 6-4 6-3", 1, 3, 3, 5 },
+                    { 7, 0, "Center Court 1", "Hard", new DateTime(2026, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc), 6, "FourthRound", "InProgress", "6-3 4-5", 2, 4, 4, null },
+                    { 8, 0, "Court 2", "Hard", new DateTime(2026, 10, 21, 16, 30, 0, 0, DateTimeKind.Utc), 3, "FourthRound", "Scheduled", null, 5, 4, 4, null },
+                    { 9, 0, "Center Court 1", "Hard", new DateTime(2026, 10, 22, 11, 0, 0, 0, DateTimeKind.Utc), 4, "Quarterfinal", "Scheduled", null, 6, 4, 4, null },
+                    { 10, 0, "Court 3", "Hard", new DateTime(2026, 10, 10, 21, 10, 0, 0, DateTimeKind.Utc), 1, "FourthRound", "Cancelled", null, 3, 4, 4, null }
                 });
 
             migrationBuilder.CreateIndex(

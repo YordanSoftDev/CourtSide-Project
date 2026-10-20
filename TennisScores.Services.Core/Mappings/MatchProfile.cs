@@ -11,8 +11,9 @@
         {
             this.CreateMap<MatchFormViewModel, Match>();
             this.CreateMap<Match, MatchFormViewModel>();
+                
 
-            this.CreateMap<Match, MatchDetailsViewModel>()
+            this.CreateMap<Match, MatchDetailsViewModel>()  
                 .ForMember(dest => dest.VenueName,
                 opt => opt
                 .MapFrom(src => src.Venue.Name))

@@ -1,5 +1,6 @@
 ﻿namespace TennisScores.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using TennisScores.Common.MatchEnumerations;
@@ -16,6 +17,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             string? userId = this.GetUserId();

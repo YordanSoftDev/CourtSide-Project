@@ -1,19 +1,23 @@
 ﻿namespace TennisScores.Data.Models
 {
+    using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using TennisScores.Common.MatchEnumerations;
     using static TennisScores.Common.ValidationConstants.Match;
     public class Match
     {
+        [Key]
         public int Id { get; set; }
 
         public required int FirstPlayerId { get; set; }
         [ForeignKey(nameof(FirstPlayerId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Player FirstPlayer { get; set; } = null!;
 
         public required int SecondPlayerId { get; set; }
         [ForeignKey(nameof(SecondPlayerId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Player SecondPlayer { get; set; } = null!;
 
         [Required]
@@ -43,10 +47,12 @@
         //where the match will be played or was played
         public required int VenueId { get; set; }
         [ForeignKey(nameof(VenueId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Venue Venue { get; set; } = null!;
 
         public required int TournamentId { get; set; }
         [ForeignKey(nameof(TournamentId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Tournament Tournament { get; set; } = null!;
 
         [MaxLength(ScoreResultMaxLength)]
@@ -54,6 +60,7 @@
 
         public int? WinnerId { get; set; }
         [ForeignKey(nameof(WinnerId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Player? Winner { get; set; }
     }
 }

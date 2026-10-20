@@ -5,22 +5,10 @@
     using TennisScores.Data.Models;
     public class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {
-        public void Configure(EntityTypeBuilder<Player> builder)
-        {
-            builder.HasOne(p => p.Country)
-                .WithMany()
-                .HasForeignKey(p => p.CountryId)
-                .IsRequired(true)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasMany(p => p.Coaches)
-                .WithOne(c => c.Player)
-                .HasForeignKey(c => c.PlayerId)
-                .IsRequired(true)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasData(
-                   new Player
+        public static IEnumerable<Player> DefaultPlayers =>
+             new List<Player>
+             {
+                 new Player
                    {
                        Id = 1,
                        FirstName = "Novak",
@@ -979,7 +967,23 @@
                        CountryId = 186, // United Kingdom
                        Birthplace = "Nottingham, United Kingdom",
                        Rank = 105
-                   });
+                   }
+             };
+        public void Configure(EntityTypeBuilder<Player> builder)
+        {
+            builder.HasOne(p => p.Country)
+                .WithMany()
+                .HasForeignKey(p => p.CountryId)
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(p => p.Coaches)
+                .WithOne(c => c.Player)
+                .HasForeignKey(c => c.PlayerId)
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(DefaultPlayers);
         }
     }
 }

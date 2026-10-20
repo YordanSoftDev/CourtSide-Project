@@ -12,7 +12,7 @@ using TennisScores.Data.Persistance;
 namespace TennisScores.Data.Migrations
 {
     [DbContext(typeof(TennisScoresDbContext))]
-    [Migration("20261018204151_InitialCreate")]
+    [Migration("20261020182820_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -75,71 +75,6 @@ namespace TennisScores.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -1317,6 +1252,161 @@ namespace TennisScores.Data.Migrations
                     b.HasIndex("WinnerId");
 
                     b.ToTable("Matches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourtEnvironment = 1,
+                            CourtName = "Centre Court",
+                            CourtSurface = "Grass",
+                            DateTime = new DateTime(2026, 7, 12, 15, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 1,
+                            MatchRound = "Final",
+                            MatchStatus = "Completed",
+                            ScoreResult = "6-4 6-7 7-6 6-3",
+                            SecondPlayerId = 2,
+                            TournamentId = 1,
+                            VenueId = 1,
+                            WinnerId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourtEnvironment = 1,
+                            CourtName = "Court No. 1",
+                            CourtSurface = "Grass",
+                            DateTime = new DateTime(2026, 7, 10, 14, 30, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 3,
+                            MatchRound = "Semifinal",
+                            MatchStatus = "Completed",
+                            ScoreResult = "6-3 6-2 6-4",
+                            SecondPlayerId = 4,
+                            TournamentId = 1,
+                            VenueId = 1,
+                            WinnerId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourtEnvironment = 1,
+                            CourtName = "Court Philippe-Chatrier",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 6, 7, 16, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 5,
+                            MatchRound = "Final",
+                            MatchStatus = "Completed",
+                            ScoreResult = "6-1 6-3 4-6 5-7 6-2",
+                            SecondPlayerId = 6,
+                            TournamentId = 2,
+                            VenueId = 2,
+                            WinnerId = 5
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CourtEnvironment = 1,
+                            CourtName = "Court Suzanne-Lenglen",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 6, 5, 13, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 1,
+                            MatchRound = "Quarterfinal",
+                            MatchStatus = "Completed",
+                            ScoreResult = "7-5 6-4 6-2",
+                            SecondPlayerId = 4,
+                            TournamentId = 2,
+                            VenueId = 2,
+                            WinnerId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CourtEnvironment = 1,
+                            CourtName = "Arthur Ashe Stadium",
+                            CourtSurface = "Hard",
+                            DateTime = new DateTime(2026, 9, 13, 20, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 2,
+                            MatchRound = "Final",
+                            MatchStatus = "Completed",
+                            ScoreResult = "6-3 3-6 6-3 7-6",
+                            SecondPlayerId = 3,
+                            TournamentId = 3,
+                            VenueId = 3,
+                            WinnerId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CourtEnvironment = 1,
+                            CourtName = "Louis Armstrong Stadium",
+                            CourtSurface = "Hard",
+                            DateTime = new DateTime(2026, 9, 11, 18, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 5,
+                            MatchRound = "Semifinal",
+                            MatchStatus = "Completed",
+                            ScoreResult = "6-4 6-4 6-3",
+                            SecondPlayerId = 1,
+                            TournamentId = 3,
+                            VenueId = 3,
+                            WinnerId = 5
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CourtEnvironment = 0,
+                            CourtName = "Center Court 1",
+                            CourtSurface = "Hard",
+                            DateTime = new DateTime(2026, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 6,
+                            MatchRound = "FourthRound",
+                            MatchStatus = "InProgress",
+                            ScoreResult = "6-3 4-5",
+                            SecondPlayerId = 2,
+                            TournamentId = 4,
+                            VenueId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CourtEnvironment = 0,
+                            CourtName = "Court 2",
+                            CourtSurface = "Hard",
+                            DateTime = new DateTime(2026, 10, 21, 16, 30, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 3,
+                            MatchRound = "FourthRound",
+                            MatchStatus = "Scheduled",
+                            SecondPlayerId = 5,
+                            TournamentId = 4,
+                            VenueId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CourtEnvironment = 0,
+                            CourtName = "Center Court 1",
+                            CourtSurface = "Hard",
+                            DateTime = new DateTime(2026, 10, 22, 11, 0, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 4,
+                            MatchRound = "Quarterfinal",
+                            MatchStatus = "Scheduled",
+                            SecondPlayerId = 6,
+                            TournamentId = 4,
+                            VenueId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CourtEnvironment = 0,
+                            CourtName = "Court 3",
+                            CourtSurface = "Hard",
+                            DateTime = new DateTime(2026, 10, 10, 21, 10, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 1,
+                            MatchRound = "FourthRound",
+                            MatchStatus = "Cancelled",
+                            SecondPlayerId = 3,
+                            TournamentId = 4,
+                            VenueId = 4
+                        });
                 });
 
             modelBuilder.Entity("TennisScores.Data.Models.Player", b =>
@@ -2375,6 +2465,128 @@ namespace TennisScores.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tournaments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Grass",
+                            EndDate = new DateTime(2026, 7, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "London, United Kingdom",
+                            StartDate = new DateTime(2026, 6, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Wimbledon",
+                            TournamentType = "Grand Slam"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Clay",
+                            EndDate = new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Paris, France",
+                            StartDate = new DateTime(2026, 5, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Roland Garros",
+                            TournamentType = "Grand Slam"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Hard",
+                            EndDate = new DateTime(2026, 9, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "New York, USA",
+                            StartDate = new DateTime(2026, 8, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "US Open",
+                            TournamentType = "Grand Slam"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CourtEnvironment = "Indoor",
+                            CourtSurface = "Hard",
+                            EndDate = new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Almaty, Kazakhstan",
+                            StartDate = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Almaty Open",
+                            TournamentType = "ATP 250"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Hard",
+                            EndDate = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Melbourne, Australia",
+                            StartDate = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Australian Open",
+                            TournamentType = "Grand Slam"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Clay",
+                            EndDate = new DateTime(2026, 4, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Roquebrune-Cap-Martin, France",
+                            StartDate = new DateTime(2026, 4, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Monte-Carlo Masters",
+                            TournamentType = "ATP 1000"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Clay",
+                            EndDate = new DateTime(2026, 5, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Madrid, Spain",
+                            StartDate = new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Mutua Madrid Open",
+                            TournamentType = "ATP 1000"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Clay",
+                            EndDate = new DateTime(2026, 5, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Rome, Italy",
+                            StartDate = new DateTime(2026, 5, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Italian Open",
+                            TournamentType = "ATP 1000"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CourtEnvironment = "Outdoor",
+                            CourtSurface = "Grass",
+                            EndDate = new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "London, United Kingdom",
+                            StartDate = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Cinch Championships",
+                            TournamentType = "ATP 500"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CourtEnvironment = "Indoor",
+                            CourtSurface = "Hard",
+                            EndDate = new DateTime(2026, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Location = "Basel, Switzerland",
+                            StartDate = new DateTime(2026, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "Swiss Indoors Basel",
+                            TournamentType = "ATP 500"
+                        });
                 });
 
             modelBuilder.Entity("TennisScores.Data.Models.TournamentVenue", b =>
@@ -2408,6 +2620,123 @@ namespace TennisScores.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Venues");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "All England Lawn Tennis and Croquet Club"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Stade Roland Garros"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "USTA Billie Jean King National Tennis Center"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Almaty Arena"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Melbourne Park"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Monte-Carlo Country Club"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Caja Mágica"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Foro Italico"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Queen's Club"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "St. Jakobshalle"
+                        });
+                });
+
+            modelBuilder.Entity("TennisScores.Data.Persistance.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -2421,7 +2750,7 @@ namespace TennisScores.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("TennisScores.Data.Persistance.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2430,7 +2759,7 @@ namespace TennisScores.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("TennisScores.Data.Persistance.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2445,7 +2774,7 @@ namespace TennisScores.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("TennisScores.Data.Persistance.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2454,7 +2783,7 @@ namespace TennisScores.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("TennisScores.Data.Persistance.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -4,13 +4,14 @@
     using Microsoft.EntityFrameworkCore;
     using TennisScores.Data.Models;
 
-    public partial class TennisScoresDbContext : IdentityDbContext
+    public partial class TennisScoresDbContext : IdentityDbContext<ApplicationUser>
     {
         public TennisScoresDbContext(DbContextOptions<TennisScoresDbContext> options)
         : base(options)
         {
         }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public virtual DbSet<Coach> Coaches { get; set; } = null!;
         public virtual DbSet<Country> Countries { get; set; } = null!;
         public virtual DbSet<Match> Matches { get; set; } = null!;

@@ -6,6 +6,7 @@
 
     public class Player
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -31,14 +32,15 @@
         public required int CountryId { get; set; }
 
         [ForeignKey(nameof(CountryId))]
-        public Country Country { get; set; } = null!;
+        public virtual Country Country { get; set; } = null!;
 
+        //example value Palma de Mallorca, Spain
         [Required]
         [MaxLength(BirthplaceMaxLength)]
         public required string Birthplace { get; set; }
 
         public required int Rank { get; set; }
 
-        public ICollection<Coach> Coaches { get; set; } = new List<Coach>();
+        public virtual ICollection<Coach> Coaches { get; set; } = new List<Coach>();
     }
 }

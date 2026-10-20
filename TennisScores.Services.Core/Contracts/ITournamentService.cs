@@ -1,7 +1,7 @@
-﻿using TennisScores.ViewModels.Tournaments;
-
-namespace TennisScores.Services.Core.Contracts
+﻿namespace TennisScores.Services.Core.Contracts
 {
+    using TennisScores.ViewModels.Tournaments;
+
     public interface ITournamentService
     {
         public Task<int> CreateTournamentAsync(TournamentFormViewModel tournamentForm /*int userId*/);

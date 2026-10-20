@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TennisScores.Common.MatchEnumerations
+﻿namespace TennisScores.Common.MatchEnumerations
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum MatchRound
     {
         [Display(Name = "First Round")]
