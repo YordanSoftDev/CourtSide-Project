@@ -31,6 +31,9 @@
         [MaxLength(MatchRoundMaxLength)]
         public required MatchRound MatchRound { get; set; }
 
+        //example value 1h 31m
+        public required string MatchDuration { get; set; }
+
         //The variants are Grass, Clay, Hard and Carpet
         [MaxLength(CourtSurfaceMaxLength)]
         public required CourtSurface CourtSurface { get; set; }

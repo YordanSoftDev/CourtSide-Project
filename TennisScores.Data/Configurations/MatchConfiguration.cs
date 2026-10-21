@@ -12,164 +12,147 @@
             {
                 new Match
                 {
-                Id = 1,
-                FirstPlayerId = 1,
-                SecondPlayerId = 2,
-                TournamentId = 1,
-                VenueId = 1,
-                DateTime = new DateTime(2026, 7, 12, 15, 0, 0, DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Grass,
-                CourtEnvironment = CourtEnvironment.Outdoor,
-                CourtName = "Centre Court",
-                MatchRound = MatchRound.Final,
-                MatchStatus = MatchStatus.Completed,
-                ScoreResult = "6-4 6-7 7-6 6-3",
-                WinnerId = 1
-            },
+                    Id = 1,
+                    FirstPlayerId = 81,
+                    SecondPlayerId = 65,
+                    TournamentId = 1, // ATP Lyon Open
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 23, 30, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Centre Court",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "2h 15m",
+                    ScoreResult = "6-7 7-6 2-6",
+                    WinnerId = 65
+                },
+                // 2. Matteo Berrettini (25) vs Kyrian Jacquet (82) -> Winner: Jacquet (82)
                 new Match
-            {
-                Id = 2,
-                FirstPlayerId = 3,
-                SecondPlayerId = 4,
-                TournamentId = 1,
-                VenueId = 1,
-                DateTime = new DateTime(2026,7,10,14,30,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Grass,
-                CourtEnvironment = CourtEnvironment.Outdoor,
-                CourtName = "Court No. 1",
-                MatchRound = MatchRound.Semifinal,
-                MatchStatus = MatchStatus.Completed,
-                ScoreResult = "6-3 6-2 6-4",
-                WinnerId = 3
-            },
-            new Match
-            {
-                Id = 3,
-                FirstPlayerId = 5,
-                SecondPlayerId = 6,
-                TournamentId = 2,
-                VenueId = 2,
-                DateTime = new DateTime(2026,6,7,16,0, 0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Clay,
-                CourtEnvironment = CourtEnvironment.Outdoor,
-                CourtName = "Court Philippe-Chatrier",
-                MatchRound = MatchRound.Final,
-                MatchStatus = MatchStatus.Completed,
-                ScoreResult = "6-1 6-3 4-6 5-7 6-2",
-                WinnerId = 5
-            },
-            new Match
-            {
-                Id = 4,
-                FirstPlayerId = 1,
-                SecondPlayerId = 4,
-                TournamentId = 2,
-                VenueId = 2,
-                DateTime = new DateTime(2026,6,5,13,0, 0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Clay,
-                CourtEnvironment = CourtEnvironment.Outdoor,
-                CourtName = "Court Suzanne-Lenglen",
-                MatchRound = MatchRound.Quarterfinal,
-                MatchStatus = MatchStatus.Completed,
-                ScoreResult = "7-5 6-4 6-2",
-                WinnerId = 1
-            },
-            new Match
-            {
-                Id = 5,
-                FirstPlayerId = 2,
-                SecondPlayerId = 3,
-                TournamentId = 3,
-                VenueId = 3,
-                DateTime = new DateTime(2026,9,13,20,0,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Hard,
-                CourtEnvironment = CourtEnvironment.Outdoor,
-                CourtName = "Arthur Ashe Stadium",
-                MatchRound = MatchRound.Final,
-                MatchStatus = MatchStatus.Completed,
-                ScoreResult = "6-3 3-6 6-3 7-6",
-                WinnerId = 2
-            },
-            new Match
-            {
-                Id = 6,
-                FirstPlayerId = 5,
-                SecondPlayerId = 1,
-                TournamentId = 3,
-                VenueId = 3,
-                DateTime = new DateTime(2026,9,11,18,0,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Hard,
-                CourtEnvironment = CourtEnvironment.Outdoor,
-                CourtName = "Louis Armstrong Stadium",
-                MatchRound = MatchRound.Semifinal,
-                MatchStatus = MatchStatus.Completed,
-                ScoreResult = "6-4 6-4 6-3",
-                WinnerId = 5
-            },
-            new Match
-            {
-                Id = 7,
-                FirstPlayerId = 6,
-                SecondPlayerId = 2,
-                TournamentId = 4,
-                VenueId = 4,
-                DateTime = new DateTime(2026,10,21,14,0,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Hard,
-                CourtEnvironment = CourtEnvironment.Indoor,
-                CourtName = "Center Court 1",
-                MatchRound = MatchRound.FourthRound,
-                MatchStatus = MatchStatus.InProgress,
-                ScoreResult = "6-3 4-5",
-                WinnerId = null
-            },
-            new Match
-            {
-                Id = 8,
-                FirstPlayerId = 3,
-                SecondPlayerId = 5,
-                TournamentId = 4,
-                VenueId = 4,
-                DateTime = new DateTime(2026,10,21,16,30,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Hard,
-                CourtEnvironment = CourtEnvironment.Indoor,
-                CourtName = "Court 2",
-                MatchRound = MatchRound.FourthRound,
-                MatchStatus = MatchStatus.Scheduled,
-                ScoreResult = null,
-                WinnerId = null
-            },
-            new Match
-            {
-                Id = 9,
-                FirstPlayerId = 4,
-                SecondPlayerId = 6,
-                TournamentId = 4,
-                VenueId = 4,
-                DateTime = new DateTime(2026,10,22,11,0,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Hard,
-                CourtEnvironment = CourtEnvironment.Indoor,
-                CourtName = "Center Court 1",
-                MatchRound = MatchRound.Quarterfinal,
-                MatchStatus = MatchStatus.Scheduled,
-                ScoreResult = null,
-                WinnerId = null
-            },
-            new Match
-            {
-                Id = 10,
-                FirstPlayerId = 1,
-                SecondPlayerId = 3,
-                TournamentId = 4,
-                VenueId = 4,
-                DateTime = new DateTime(2026,10,10, 21, 10,0,0,DateTimeKind.Utc),
-                CourtSurface = CourtSurface.Hard,
-                CourtEnvironment = CourtEnvironment.Indoor,
-                CourtName = "Court 3",
-                MatchRound = MatchRound.FourthRound,
-                MatchStatus = MatchStatus.Cancelled,
-                ScoreResult = null,
-                WinnerId = null
-            }
+                {
+                    Id = 2,
+                    FirstPlayerId = 25,
+                    SecondPlayerId = 82,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 21, 10, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Court 1",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "1h 40m",
+                    ScoreResult = "6-7 5-7",
+                    WinnerId = 82
+                },
+                // 3. Luca Van Assche (85) vs Clément Tabur (83) -> Winner: Van Assche (85)
+                new Match
+                {
+                    Id = 3,
+                    FirstPlayerId = 85,
+                    SecondPlayerId = 83,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 20, 10, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Court 2",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "1h 35m",
+                    ScoreResult = "7-6 6-3",
+                    WinnerId = 85
+                },
+                // 4. Benjamin Bonzi (84) vs Cameron Norrie (22) -> Winner: Bonzi (84)
+                new Match
+                {
+                    Id = 4,
+                    FirstPlayerId = 84,
+                    SecondPlayerId = 22,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 18, 50, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Centre Court",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "2h 05m",
+                    ScoreResult = "6-3 3-6 6-3",
+                    WinnerId = 84
+                },
+                // 5. Daniel Altmaier (52) vs Titouan Droguet (86) -> Winner: Altmaier (52)
+                new Match
+                {
+                    Id = 5,
+                    FirstPlayerId = 52,
+                    SecondPlayerId = 86,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 17, 05, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Court 1",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "2h 30m",
+                    ScoreResult = "5-7 7-6 7-6",
+                    WinnerId = 52
+                },
+                // 6. Ugo Humbert (16) vs Corentin Moutet (87) -> Winner: Moutet (87)
+                new Match
+                {
+                    Id = 6,
+                    FirstPlayerId = 16,
+                    SecondPlayerId = 87,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 15, 15, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Centre Court",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "2h 20m",
+                    ScoreResult = "2-6 7-6 4-7",
+                    WinnerId = 87
+                },
+                // 7. Arthur Féry (88) vs Borna Gojo (89) -> Winner: Gojo (89)
+                new Match
+                {
+                    Id = 7,
+                    FirstPlayerId = 88,
+                    SecondPlayerId = 89,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 15, 05, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Court 2",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "1h 25m",
+                    ScoreResult = "3-6 2-7",
+                    WinnerId = 89
+                },
+                // 8. Pierre-Hugues Herbert (90) vs Sebastian Baez (27) -> Winner: Herbert (90)
+                new Match
+                {
+                    Id = 8,
+                    FirstPlayerId = 90,
+                    SecondPlayerId = 27,
+                    TournamentId = 1,
+                    VenueId = 11,
+                    DateTime = new DateTime(2026, 10, 20, 13, 05, 0, DateTimeKind.Utc),
+                    CourtSurface = CourtSurface.Clay,
+                    CourtEnvironment = CourtEnvironment.Outdoor,
+                    CourtName = "Centre Court",
+                    MatchRound = MatchRound.FirstRound,
+                    MatchStatus = MatchStatus.Completed,
+                    MatchDuration = "1h 30m",
+                    ScoreResult = "6-3 6-4",
+                    WinnerId = 90
+                }
             };
 
         public void Configure(EntityTypeBuilder<Match> builder)

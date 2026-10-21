@@ -967,6 +967,142 @@
                        CountryId = 186, // United Kingdom
                        Birthplace = "Nottingham, United Kingdom",
                        Rank = 105
+                   },
+                   new Player
+                   {
+                       Id = 81,
+                       FirstName = "Hamad",
+                       LastName = "Medjedovic",
+                       Age = 23,
+                       Weight = "190 lbs/(86kg)",
+                       Height = "6'2\"/(188cm)",
+                       CountryId = 154, // Serbia
+                       Birthplace = "Novi Pazar, Serbia",
+                       Rank = 76
+                   },
+                   
+                   // 82. Kyrian Jacquet
+                   new Player
+                   {
+                       Id = 82,
+                       FirstName = "Kyrian",
+                       LastName = "Jacquet",
+                       Age = 25,
+                       Weight = "155 lbs/(70kg)",
+                       Height = "5'10\"/(178cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Lyon, France",
+                       Rank = 76
+                   },
+                   
+                   // 83. Clément Tabur
+                   new Player
+                   {
+                       Id = 83,
+                       FirstName = "Clément",
+                       LastName = "Tabur",
+                       Age = 26,
+                       Weight = "160 lbs/(73kg)",
+                       Height = "5'8\"/(173cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Reims, France",
+                       Rank = 158
+                   },
+                   
+                   // 84. Benjamin Bonzi
+                   new Player
+                   {
+                       Id = 84,
+                       FirstName = "Benjamin",
+                       LastName = "Bonzi",
+                       Age = 30,
+                       Weight = "180 lbs/(82kg)",
+                       Height = "6'0\"/(183cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Nîmes, France",
+                       Rank = 100
+                   },
+                   
+                   // 85. Luca Van Assche
+                   new Player
+                   {
+                       Id = 85,
+                       FirstName = "Luca",
+                       LastName = "Van Assche",
+                       Age = 22,
+                       Weight = "158 lbs/(72kg)",
+                       Height = "5'10\"/(178cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Woluwe-Saint-Lambert, Belgium",
+                       Rank = 48
+                   },
+                   
+                   // 86. Titouan Droguet
+                   new Player
+                   {
+                       Id = 86,
+                       FirstName = "Titouan",
+                       LastName = "Droguet",
+                       Age = 25,
+                       Weight = "176 lbs/(80kg)",
+                       Height = "6'3\"/(191cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Villeneuve-Saint-Georges,    France",
+                       Rank = 69
+                   },
+                   
+                   // 87. Corentin Moutet
+                   new Player
+                   {
+                       Id = 87,
+                       FirstName = "Corentin",
+                       LastName = "Moutet",
+                       Age = 27,
+                       Weight = "156 lbs/(71kg)",
+                       Height = "5'11\"/(180cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Paris, France",
+                       Rank = 94
+                   },
+                   
+                   // 88. Arthur Féry
+                   new Player
+                   {
+                       Id = 88,
+                       FirstName = "Arthur",
+                       LastName = "Féry",
+                       Age = 24,
+                       Weight = "165 lbs/(75kg)",
+                       Height = "5'9\"/(175cm)",
+                       CountryId = 186, // United Kingdom
+                       Birthplace = "Sèvres, France",
+                       Rank = 220
+                   },
+                   new Player
+                   {
+                       Id = 89,
+                       FirstName = "Borna",
+                       LastName = "Gojo",
+                       Age = 28,
+                       Weight = "187 lbs/(85kg)",
+                       Height = "6'5\"/(196cm)",
+                       CountryId = 42, // Croatia
+                       Birthplace = "Split, Croatia",
+                       Rank = 148
+                   },
+                   
+                   // 90. Pierre-Hugues Herbert
+                   new Player
+                   {
+                       Id = 90,
+                       FirstName = "Pierre-Hugues",
+                       LastName = "Herbert",
+                       Age = 35,
+                       Weight = "176 lbs/(80kg)",
+                       Height = "6'2\"/(188cm)",
+                       CountryId = 61, // France
+                       Birthplace = "Schiltigheim, France",
+                       Rank = 290
                    }
              };
         public void Configure(EntityTypeBuilder<Player> builder)

@@ -13,13 +13,13 @@
                  new Tournament
                  {
                      Id = 1,
-                     TournamentName = "Wimbledon",
-                     Location = "London, United Kingdom",
-                     StartDate = new DateTime(2026, 6, 29, 0, 0, 0, DateTimeKind.Utc),
-                     EndDate = new DateTime(2026, 7, 12, 0, 0, 0, DateTimeKind.Utc),
-                     TournamentType = "Grand Slam",
-                     CourtSurface = CourtSurface.Grass,
-                     CourtEnvironment = CourtEnvironment.Outdoor,
+                     TournamentName = "ATP Lyon Open",
+                     Location = "Lyon, France",
+                     StartDate = new DateTime(2026,  10,      19,      0, 0, 0,    DateTimeKind.Utc),
+                     EndDate = new DateTime(2026, 10,     25,        0,     0, 0,     DateTimeKind.Utc),
+                     TournamentType = "ATP 250",
+                     CourtSurface = CourtSurface.Hard,
+                     CourtEnvironment = CourtEnvironment.Indoor,
                      IsActive = true
                  },
                  new Tournament
@@ -129,7 +129,8 @@
                      CourtSurface = CourtSurface.Hard,
                      CourtEnvironment = CourtEnvironment.Indoor,
                      IsActive = true
-                 }
+                 },
+                 
              };
         public void Configure(EntityTypeBuilder<Tournament> builder)
         {

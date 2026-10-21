@@ -29,6 +29,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             if (id <= 0)
@@ -50,9 +51,9 @@
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var players = await this
+            IEnumerable<TennisScores.ViewModels.Players.PlayerSelectViewModel>? players = await this
                 .service.GetPlayersForSelectAsync();
-            var model = new MatchFormViewModel
+            MatchFormViewModel? model = new MatchFormViewModel
             {
                 Players = players
                 .Select(p => new SelectListItem

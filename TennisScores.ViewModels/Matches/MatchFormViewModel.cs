@@ -39,6 +39,12 @@
         [Display(Name = "Match Round")]
         public MatchRound? MatchRound { get; set; }
 
+        [Required(ErrorMessage = "Please enter a Match Duration.")]
+        [RegularExpression(@"^(?:(\d{1,2})h\s*)?(?:(\d{1,2})m)?$",
+         ErrorMessage = "Duration must be in the format '1h 45m', '2h 00m', or '31m'.")]
+        [Display(Name = "Match Duration")]
+        public string? MatchDuration { get; set; }
+
         [Required(ErrorMessage = "Please select a Court Name.")]
         [StringLength(CourtNameMaxLength, MinimumLength = CourtNameMinLength,
             ErrorMessage = "Court Name must be between 2 and 100 characters long.")]

@@ -1210,6 +1210,10 @@ namespace TennisScores.Data.Migrations
                     b.Property<int>("FirstPlayerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("MatchDuration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MatchRound")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -1256,153 +1260,136 @@ namespace TennisScores.Data.Migrations
                             Id = 1,
                             CourtEnvironment = 1,
                             CourtName = "Centre Court",
-                            CourtSurface = "Grass",
-                            DateTime = new DateTime(2026, 7, 12, 15, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 1,
-                            MatchRound = "Final",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 10, 20, 23, 30, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 81,
+                            MatchDuration = "2h 15m",
+                            MatchRound = "FirstRound",
                             MatchStatus = "Completed",
-                            ScoreResult = "6-4 6-7 7-6 6-3",
-                            SecondPlayerId = 2,
+                            ScoreResult = "6-7 7-6 2-6",
+                            SecondPlayerId = 65,
                             TournamentId = 1,
-                            VenueId = 1,
-                            WinnerId = 1
+                            VenueId = 11,
+                            WinnerId = 65
                         },
                         new
                         {
                             Id = 2,
                             CourtEnvironment = 1,
-                            CourtName = "Court No. 1",
-                            CourtSurface = "Grass",
-                            DateTime = new DateTime(2026, 7, 10, 14, 30, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 3,
-                            MatchRound = "Semifinal",
+                            CourtName = "Court 1",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 10, 20, 21, 10, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 25,
+                            MatchDuration = "1h 40m",
+                            MatchRound = "FirstRound",
                             MatchStatus = "Completed",
-                            ScoreResult = "6-3 6-2 6-4",
-                            SecondPlayerId = 4,
+                            ScoreResult = "6-7 5-7",
+                            SecondPlayerId = 82,
                             TournamentId = 1,
-                            VenueId = 1,
-                            WinnerId = 3
+                            VenueId = 11,
+                            WinnerId = 82
                         },
                         new
                         {
                             Id = 3,
                             CourtEnvironment = 1,
-                            CourtName = "Court Philippe-Chatrier",
+                            CourtName = "Court 2",
                             CourtSurface = "Clay",
-                            DateTime = new DateTime(2026, 6, 7, 16, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 5,
-                            MatchRound = "Final",
+                            DateTime = new DateTime(2026, 10, 20, 20, 10, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 85,
+                            MatchDuration = "1h 35m",
+                            MatchRound = "FirstRound",
                             MatchStatus = "Completed",
-                            ScoreResult = "6-1 6-3 4-6 5-7 6-2",
-                            SecondPlayerId = 6,
-                            TournamentId = 2,
-                            VenueId = 2,
-                            WinnerId = 5
+                            ScoreResult = "7-6 6-3",
+                            SecondPlayerId = 83,
+                            TournamentId = 1,
+                            VenueId = 11,
+                            WinnerId = 85
                         },
                         new
                         {
                             Id = 4,
                             CourtEnvironment = 1,
-                            CourtName = "Court Suzanne-Lenglen",
+                            CourtName = "Centre Court",
                             CourtSurface = "Clay",
-                            DateTime = new DateTime(2026, 6, 5, 13, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 1,
-                            MatchRound = "Quarterfinal",
+                            DateTime = new DateTime(2026, 10, 20, 18, 50, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 84,
+                            MatchDuration = "2h 05m",
+                            MatchRound = "FirstRound",
                             MatchStatus = "Completed",
-                            ScoreResult = "7-5 6-4 6-2",
-                            SecondPlayerId = 4,
-                            TournamentId = 2,
-                            VenueId = 2,
-                            WinnerId = 1
+                            ScoreResult = "6-3 3-6 6-3",
+                            SecondPlayerId = 22,
+                            TournamentId = 1,
+                            VenueId = 11,
+                            WinnerId = 84
                         },
                         new
                         {
                             Id = 5,
                             CourtEnvironment = 1,
-                            CourtName = "Arthur Ashe Stadium",
-                            CourtSurface = "Hard",
-                            DateTime = new DateTime(2026, 9, 13, 20, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 2,
-                            MatchRound = "Final",
+                            CourtName = "Court 1",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 10, 20, 17, 5, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 52,
+                            MatchDuration = "2h 30m",
+                            MatchRound = "FirstRound",
                             MatchStatus = "Completed",
-                            ScoreResult = "6-3 3-6 6-3 7-6",
-                            SecondPlayerId = 3,
-                            TournamentId = 3,
-                            VenueId = 3,
-                            WinnerId = 2
+                            ScoreResult = "5-7 7-6 7-6",
+                            SecondPlayerId = 86,
+                            TournamentId = 1,
+                            VenueId = 11,
+                            WinnerId = 52
                         },
                         new
                         {
                             Id = 6,
                             CourtEnvironment = 1,
-                            CourtName = "Louis Armstrong Stadium",
-                            CourtSurface = "Hard",
-                            DateTime = new DateTime(2026, 9, 11, 18, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 5,
-                            MatchRound = "Semifinal",
+                            CourtName = "Centre Court",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 10, 20, 15, 15, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 16,
+                            MatchDuration = "2h 20m",
+                            MatchRound = "FirstRound",
                             MatchStatus = "Completed",
-                            ScoreResult = "6-4 6-4 6-3",
-                            SecondPlayerId = 1,
-                            TournamentId = 3,
-                            VenueId = 3,
-                            WinnerId = 5
+                            ScoreResult = "2-6 7-6 4-7",
+                            SecondPlayerId = 87,
+                            TournamentId = 1,
+                            VenueId = 11,
+                            WinnerId = 87
                         },
                         new
                         {
                             Id = 7,
-                            CourtEnvironment = 0,
-                            CourtName = "Center Court 1",
-                            CourtSurface = "Hard",
-                            DateTime = new DateTime(2026, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 6,
-                            MatchRound = "FourthRound",
-                            MatchStatus = "InProgress",
-                            ScoreResult = "6-3 4-5",
-                            SecondPlayerId = 2,
-                            TournamentId = 4,
-                            VenueId = 4
+                            CourtEnvironment = 1,
+                            CourtName = "Court 2",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 10, 20, 15, 5, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 88,
+                            MatchDuration = "1h 25m",
+                            MatchRound = "FirstRound",
+                            MatchStatus = "Completed",
+                            ScoreResult = "3-6 2-7",
+                            SecondPlayerId = 89,
+                            TournamentId = 1,
+                            VenueId = 11,
+                            WinnerId = 89
                         },
                         new
                         {
                             Id = 8,
-                            CourtEnvironment = 0,
-                            CourtName = "Court 2",
-                            CourtSurface = "Hard",
-                            DateTime = new DateTime(2026, 10, 21, 16, 30, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 3,
-                            MatchRound = "FourthRound",
-                            MatchStatus = "Scheduled",
-                            SecondPlayerId = 5,
-                            TournamentId = 4,
-                            VenueId = 4
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CourtEnvironment = 0,
-                            CourtName = "Center Court 1",
-                            CourtSurface = "Hard",
-                            DateTime = new DateTime(2026, 10, 22, 11, 0, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 4,
-                            MatchRound = "Quarterfinal",
-                            MatchStatus = "Scheduled",
-                            SecondPlayerId = 6,
-                            TournamentId = 4,
-                            VenueId = 4
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CourtEnvironment = 0,
-                            CourtName = "Court 3",
-                            CourtSurface = "Hard",
-                            DateTime = new DateTime(2026, 10, 10, 21, 10, 0, 0, DateTimeKind.Utc),
-                            FirstPlayerId = 1,
-                            MatchRound = "FourthRound",
-                            MatchStatus = "Cancelled",
-                            SecondPlayerId = 3,
-                            TournamentId = 4,
-                            VenueId = 4
+                            CourtEnvironment = 1,
+                            CourtName = "Centre Court",
+                            CourtSurface = "Clay",
+                            DateTime = new DateTime(2026, 10, 20, 13, 5, 0, 0, DateTimeKind.Utc),
+                            FirstPlayerId = 90,
+                            MatchDuration = "1h 30m",
+                            MatchRound = "FirstRound",
+                            MatchStatus = "Completed",
+                            ScoreResult = "6-3 6-4",
+                            SecondPlayerId = 27,
+                            TournamentId = 1,
+                            VenueId = 11,
+                            WinnerId = 90
                         });
                 });
 
@@ -2414,6 +2401,126 @@ namespace TennisScores.Data.Migrations
                             LastName = "Harris",
                             Rank = 105,
                             Weight = "176 lbs/(80kg)"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Age = 23,
+                            Birthplace = "Novi Pazar, Serbia",
+                            CountryId = 154,
+                            FirstName = "Hamad",
+                            Height = "6'2\"/(188cm)",
+                            LastName = "Medjedovic",
+                            Rank = 76,
+                            Weight = "190 lbs/(86kg)"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Age = 25,
+                            Birthplace = "Lyon, France",
+                            CountryId = 61,
+                            FirstName = "Kyrian",
+                            Height = "5'10\"/(178cm)",
+                            LastName = "Jacquet",
+                            Rank = 76,
+                            Weight = "155 lbs/(70kg)"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Age = 26,
+                            Birthplace = "Reims, France",
+                            CountryId = 61,
+                            FirstName = "Clément",
+                            Height = "5'8\"/(173cm)",
+                            LastName = "Tabur",
+                            Rank = 158,
+                            Weight = "160 lbs/(73kg)"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Age = 30,
+                            Birthplace = "Nîmes, France",
+                            CountryId = 61,
+                            FirstName = "Benjamin",
+                            Height = "6'0\"/(183cm)",
+                            LastName = "Bonzi",
+                            Rank = 100,
+                            Weight = "180 lbs/(82kg)"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Age = 22,
+                            Birthplace = "Woluwe-Saint-Lambert, Belgium",
+                            CountryId = 61,
+                            FirstName = "Luca",
+                            Height = "5'10\"/(178cm)",
+                            LastName = "Van Assche",
+                            Rank = 48,
+                            Weight = "158 lbs/(72kg)"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Age = 25,
+                            Birthplace = "Villeneuve-Saint-Georges,    France",
+                            CountryId = 61,
+                            FirstName = "Titouan",
+                            Height = "6'3\"/(191cm)",
+                            LastName = "Droguet",
+                            Rank = 69,
+                            Weight = "176 lbs/(80kg)"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Age = 27,
+                            Birthplace = "Paris, France",
+                            CountryId = 61,
+                            FirstName = "Corentin",
+                            Height = "5'11\"/(180cm)",
+                            LastName = "Moutet",
+                            Rank = 94,
+                            Weight = "156 lbs/(71kg)"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Age = 24,
+                            Birthplace = "Sèvres, France",
+                            CountryId = 186,
+                            FirstName = "Arthur",
+                            Height = "5'9\"/(175cm)",
+                            LastName = "Féry",
+                            Rank = 220,
+                            Weight = "165 lbs/(75kg)"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Age = 28,
+                            Birthplace = "Split, Croatia",
+                            CountryId = 42,
+                            FirstName = "Borna",
+                            Height = "6'5\"/(196cm)",
+                            LastName = "Gojo",
+                            Rank = 148,
+                            Weight = "187 lbs/(85kg)"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Age = 35,
+                            Birthplace = "Schiltigheim, France",
+                            CountryId = 61,
+                            FirstName = "Pierre-Hugues",
+                            Height = "6'2\"/(188cm)",
+                            LastName = "Herbert",
+                            Rank = 290,
+                            Weight = "176 lbs/(80kg)"
                         });
                 });
 
@@ -2467,14 +2574,14 @@ namespace TennisScores.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CourtEnvironment = "Outdoor",
-                            CourtSurface = "Grass",
-                            EndDate = new DateTime(2026, 7, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourtEnvironment = "Indoor",
+                            CourtSurface = "Hard",
+                            EndDate = new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsActive = true,
-                            Location = "London, United Kingdom",
-                            StartDate = new DateTime(2026, 6, 29, 0, 0, 0, 0, DateTimeKind.Utc),
-                            TournamentName = "Wimbledon",
-                            TournamentType = "Grand Slam"
+                            Location = "Lyon, France",
+                            StartDate = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            TournamentName = "ATP Lyon Open",
+                            TournamentType = "ATP 250"
                         },
                         new
                         {
@@ -2668,6 +2775,11 @@ namespace TennisScores.Data.Migrations
                         {
                             Id = 10,
                             Name = "St. Jakobshalle"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Palais des Sports de Gerland"
                         });
                 });
 

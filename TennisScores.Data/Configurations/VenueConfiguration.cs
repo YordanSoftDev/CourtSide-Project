@@ -58,6 +58,11 @@
                  {
                      Id = 10,
                      Name = "St. Jakobshalle"
+                 },
+                 new Venue
+                 {
+                     Id = 11,
+                     Name = "Palais des Sports de Gerland", 
                  }
              };
 

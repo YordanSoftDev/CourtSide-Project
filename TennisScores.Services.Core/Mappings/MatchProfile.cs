@@ -34,7 +34,7 @@
                 $"{src.Winner.LastName}" : null));
 
 
-            this.CreateMap<Match, MatchInfoViewModel>()
+            this.CreateMap<Match, MatchInfoViewModel>()       
                 .ForMember(dest => dest.VenueName,
                 opt => opt
                 .MapFrom(src => src.Venue.Name))

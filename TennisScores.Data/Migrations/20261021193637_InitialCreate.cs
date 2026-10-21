@@ -286,6 +286,7 @@ namespace TennisScores.Data.Migrations
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MatchStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     MatchRound = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MatchDuration = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CourtSurface = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CourtName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CourtEnvironment = table.Column<int>(type: "int", maxLength: 20, nullable: true),
@@ -536,7 +537,7 @@ namespace TennisScores.Data.Migrations
                 columns: new[] { "Id", "CourtEnvironment", "CourtSurface", "EndDate", "IsActive", "Location", "StartDate", "TournamentName", "TournamentType" },
                 values: new object[,]
                 {
-                    { 1, "Outdoor", "Grass", new DateTime(2026, 7, 12, 0, 0, 0, 0, DateTimeKind.Utc), true, "London, United Kingdom", new DateTime(2026, 6, 29, 0, 0, 0, 0, DateTimeKind.Utc), "Wimbledon", "Grand Slam" },
+                    { 1, "Indoor", "Hard", new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc), true, "Lyon, France", new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc), "ATP Lyon Open", "ATP 250" },
                     { 2, "Outdoor", "Clay", new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc), true, "Paris, France", new DateTime(2026, 5, 25, 0, 0, 0, 0, DateTimeKind.Utc), "Roland Garros", "Grand Slam" },
                     { 3, "Outdoor", "Hard", new DateTime(2026, 9, 13, 0, 0, 0, 0, DateTimeKind.Utc), true, "New York, USA", new DateTime(2026, 8, 31, 0, 0, 0, 0, DateTimeKind.Utc), "US Open", "Grand Slam" },
                     { 4, "Indoor", "Hard", new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc), true, "Almaty, Kazakhstan", new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc), "Almaty Open", "ATP 250" },
@@ -562,7 +563,8 @@ namespace TennisScores.Data.Migrations
                     { 7, "Caja Mágica" },
                     { 8, "Foro Italico" },
                     { 9, "Queen's Club" },
-                    { 10, "St. Jakobshalle" }
+                    { 10, "St. Jakobshalle" },
+                    { 11, "Palais des Sports de Gerland" }
                 });
 
             migrationBuilder.InsertData(
@@ -649,24 +651,32 @@ namespace TennisScores.Data.Migrations
                     { 77, 25, "La Plata, Argentina", 7, "Thiago Agustín", "6'2\"/(188cm)", "Tirante", 54, "172 lbs/(78kg)" },
                     { 78, 29, "Bondy, France", 61, "Quentin", "6'4\"/(193cm)", "Halys", 48, "180 lbs/(82kg)" },
                     { 79, 25, "Haarlem, Netherlands", 123, "Jesper", "5'11\"/(180cm)", "de Jong", 95, "159 lbs/(72kg)" },
-                    { 80, 31, "Nottingham, United Kingdom", 186, "Billy", "6'2\"/(188cm)", "Harris", 105, "176 lbs/(80kg)" }
+                    { 80, 31, "Nottingham, United Kingdom", 186, "Billy", "6'2\"/(188cm)", "Harris", 105, "176 lbs/(80kg)" },
+                    { 81, 23, "Novi Pazar, Serbia", 154, "Hamad", "6'2\"/(188cm)", "Medjedovic", 76, "190 lbs/(86kg)" },
+                    { 82, 25, "Lyon, France", 61, "Kyrian", "5'10\"/(178cm)", "Jacquet", 76, "155 lbs/(70kg)" },
+                    { 83, 26, "Reims, France", 61, "Clément", "5'8\"/(173cm)", "Tabur", 158, "160 lbs/(73kg)" },
+                    { 84, 30, "Nîmes, France", 61, "Benjamin", "6'0\"/(183cm)", "Bonzi", 100, "180 lbs/(82kg)" },
+                    { 85, 22, "Woluwe-Saint-Lambert, Belgium", 61, "Luca", "5'10\"/(178cm)", "Van Assche", 48, "158 lbs/(72kg)" },
+                    { 86, 25, "Villeneuve-Saint-Georges,    France", 61, "Titouan", "6'3\"/(191cm)", "Droguet", 69, "176 lbs/(80kg)" },
+                    { 87, 27, "Paris, France", 61, "Corentin", "5'11\"/(180cm)", "Moutet", 94, "156 lbs/(71kg)" },
+                    { 88, 24, "Sèvres, France", 186, "Arthur", "5'9\"/(175cm)", "Féry", 220, "165 lbs/(75kg)" },
+                    { 89, 28, "Split, Croatia", 42, "Borna", "6'5\"/(196cm)", "Gojo", 148, "187 lbs/(85kg)" },
+                    { 90, 35, "Schiltigheim, France", 61, "Pierre-Hugues", "6'2\"/(188cm)", "Herbert", 290, "176 lbs/(80kg)" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Matches",
-                columns: new[] { "Id", "CourtEnvironment", "CourtName", "CourtSurface", "DateTime", "FirstPlayerId", "MatchRound", "MatchStatus", "ScoreResult", "SecondPlayerId", "TournamentId", "VenueId", "WinnerId" },
+                columns: new[] { "Id", "CourtEnvironment", "CourtName", "CourtSurface", "DateTime", "FirstPlayerId", "MatchDuration", "MatchRound", "MatchStatus", "ScoreResult", "SecondPlayerId", "TournamentId", "VenueId", "WinnerId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Centre Court", "Grass", new DateTime(2026, 7, 12, 15, 0, 0, 0, DateTimeKind.Utc), 1, "Final", "Completed", "6-4 6-7 7-6 6-3", 2, 1, 1, 1 },
-                    { 2, 1, "Court No. 1", "Grass", new DateTime(2026, 7, 10, 14, 30, 0, 0, DateTimeKind.Utc), 3, "Semifinal", "Completed", "6-3 6-2 6-4", 4, 1, 1, 3 },
-                    { 3, 1, "Court Philippe-Chatrier", "Clay", new DateTime(2026, 6, 7, 16, 0, 0, 0, DateTimeKind.Utc), 5, "Final", "Completed", "6-1 6-3 4-6 5-7 6-2", 6, 2, 2, 5 },
-                    { 4, 1, "Court Suzanne-Lenglen", "Clay", new DateTime(2026, 6, 5, 13, 0, 0, 0, DateTimeKind.Utc), 1, "Quarterfinal", "Completed", "7-5 6-4 6-2", 4, 2, 2, 1 },
-                    { 5, 1, "Arthur Ashe Stadium", "Hard", new DateTime(2026, 9, 13, 20, 0, 0, 0, DateTimeKind.Utc), 2, "Final", "Completed", "6-3 3-6 6-3 7-6", 3, 3, 3, 2 },
-                    { 6, 1, "Louis Armstrong Stadium", "Hard", new DateTime(2026, 9, 11, 18, 0, 0, 0, DateTimeKind.Utc), 5, "Semifinal", "Completed", "6-4 6-4 6-3", 1, 3, 3, 5 },
-                    { 7, 0, "Center Court 1", "Hard", new DateTime(2026, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc), 6, "FourthRound", "InProgress", "6-3 4-5", 2, 4, 4, null },
-                    { 8, 0, "Court 2", "Hard", new DateTime(2026, 10, 21, 16, 30, 0, 0, DateTimeKind.Utc), 3, "FourthRound", "Scheduled", null, 5, 4, 4, null },
-                    { 9, 0, "Center Court 1", "Hard", new DateTime(2026, 10, 22, 11, 0, 0, 0, DateTimeKind.Utc), 4, "Quarterfinal", "Scheduled", null, 6, 4, 4, null },
-                    { 10, 0, "Court 3", "Hard", new DateTime(2026, 10, 10, 21, 10, 0, 0, DateTimeKind.Utc), 1, "FourthRound", "Cancelled", null, 3, 4, 4, null }
+                    { 1, 1, "Centre Court", "Clay", new DateTime(2026, 10, 20, 23, 30, 0, 0, DateTimeKind.Utc), 81, "2h 15m", "FirstRound", "Completed", "6-7 7-6 2-6", 65, 1, 11, 65 },
+                    { 2, 1, "Court 1", "Clay", new DateTime(2026, 10, 20, 21, 10, 0, 0, DateTimeKind.Utc), 25, "1h 40m", "FirstRound", "Completed", "6-7 5-7", 82, 1, 11, 82 },
+                    { 3, 1, "Court 2", "Clay", new DateTime(2026, 10, 20, 20, 10, 0, 0, DateTimeKind.Utc), 85, "1h 35m", "FirstRound", "Completed", "7-6 6-3", 83, 1, 11, 85 },
+                    { 4, 1, "Centre Court", "Clay", new DateTime(2026, 10, 20, 18, 50, 0, 0, DateTimeKind.Utc), 84, "2h 05m", "FirstRound", "Completed", "6-3 3-6 6-3", 22, 1, 11, 84 },
+                    { 5, 1, "Court 1", "Clay", new DateTime(2026, 10, 20, 17, 5, 0, 0, DateTimeKind.Utc), 52, "2h 30m", "FirstRound", "Completed", "5-7 7-6 7-6", 86, 1, 11, 52 },
+                    { 6, 1, "Centre Court", "Clay", new DateTime(2026, 10, 20, 15, 15, 0, 0, DateTimeKind.Utc), 16, "2h 20m", "FirstRound", "Completed", "2-6 7-6 4-7", 87, 1, 11, 87 },
+                    { 7, 1, "Court 2", "Clay", new DateTime(2026, 10, 20, 15, 5, 0, 0, DateTimeKind.Utc), 88, "1h 25m", "FirstRound", "Completed", "3-6 2-7", 89, 1, 11, 89 },
+                    { 8, 1, "Centre Court", "Clay", new DateTime(2026, 10, 20, 13, 5, 0, 0, DateTimeKind.Utc), 90, "1h 30m", "FirstRound", "Completed", "6-3 6-4", 27, 1, 11, 90 }
                 });
 
             migrationBuilder.CreateIndex(
