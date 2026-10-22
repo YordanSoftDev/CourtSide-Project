@@ -1,0 +1,327 @@
+﻿@model IEnumerable<CourtSide.ViewModels.Matches.MatchInfoViewModel>
+@functions {
+    public string FormatPlayerName(string fullName)
+    {
+        if (string.IsNullOrWhiteSpace(fullName)) return string.Empty;
+
+        var parts = fullName.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length > 1)
+        {
+            // Takes the first letter of the first name, adds a dot, then appends the last name
+            return $"{parts[0][0]}. {string.Join(" ", parts.Skip(1))}";
+        }
+
+        return fullName;
+    }
+}
+@{
+    ViewData["Title"] = "Tennis Matches";
+}
+
+@section MainStyle {
+    <style>
+        .scores-page-container {
+            background-color: #EFF3EA;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        .tournament-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+        }
+
+        .tournament-header-bar {
+            background-color: #EFF3EA !important;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table-header-subtle {
+            font-weight: 400 !important;
+            font-size: 0.8rem;
+            color: #6c757d !important;
+            text-transform: lowercase !important;
+            letter-spacing: 0.2px;
+        }
+
+        .badge-live {
+            background-color: #d1fae5;
+            color: #065f46;
+            font-weight: 500;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-live-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+        }
+
+        .player-name {
+            font-size: 1.05rem;
+            font-weight: 550 !important;
+            color: #142D25 !important;
+            letter-spacing: -0.2px;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .serving-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .score-digit {
+            color: #142D25 !important;
+            font-weight: 700;
+        }
+
+        .pts-pill {
+            background-color: #EAF0E9;
+            color: #256246 !important;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            min-width: 38px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .pts-pill-muted {
+            background-color: #EAF0E9;
+            color: #256246 !important;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            min-width: 38px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .badge-atp {
+            background-color: #ffffff;
+            color: #123F30;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .action-link {
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 4px 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+            .action-link:hover {
+                background-color: #f1f5f9;
+                color: #000;
+            }
+    </style>
+}
+
+<div class="scores-page-container py-4">
+    <div class="container" style="max-width: 950px;">
+        <!-- Header & Top Navigation Bar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex align-items-center gap-4">
+                <div class="d-flex gap-3">
+                    <span class="fw-bold border-bottom border-2 pb-1" style="color: #142D25 !important; border-color: #142D25 !important;">
+                        All matches
+                    </span>
+                </div>
+            </div>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Create" class="btn btn-success shadow-sm fw-bold">
+                    <i class="bi bi-plus-circle"></i> Create New Match
+                </a>
+            }
+        </div>
+
+        <!-- Main Tournament Card -->
+        <div class="tournament-card shadow-lg mb-4">
+
+            <!-- Tournament Header Bar -->
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center" style="background-color: #EAF0E9 !important;">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge-atp">ATP 250</span>
+                    <div>
+                        <h5 class="mb-0 fw-bold" style="color: #142D25 !important;">ATP Lyon Open 2026</h5>
+                        <small style="color: #718078 !important;">Lyon, France · Hard Indoor</small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-2 small" style="color: #718078 !important;">
+                    <span>@(Model?.Count() ?? 0) matches</span>
+                    <i class="bi bi-chevron-up"></i>
+                </div>
+            </div>
+
+            <!-- Matches Table -->
+            <div class="table-responsive bg-white">
+                <table class="table table-borderless align-middle mb-0">
+                    <thead class="border-bottom" style="background-color: #f8fafc;">
+                        <tr>
+                            <th style="width: 22%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;" class="ps-4">STATUS / TIME</th>
+                            <th style="width: 40%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;">SINGLES</th>
+                            <th class="text-center" style="width: 5%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;">1</th>
+                            <th class="text-center" style="width: 5%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;">2</th>
+                            <th class="text-center" style="width: 5%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;">3</th>
+                            <th class="text-center" style="width: 8%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;">PTS</th>
+                            <th class="text-center" style="width: 15%; font-weight: 400 !important; color: #718078 !important; font-size: 0.8rem;">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var match in Model)
+                            {
+                                var sets = !string.IsNullOrEmpty(match.ScoreResult)
+                                    ? match.ScoreResult.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                    : Array.Empty<string>();
+
+                                <tr class="border-bottom">
+                                    <!-- Status Column -->
+                                    <td class="ps-4">
+                                        @if (string.IsNullOrEmpty(match.WinnerFullName))
+                                        {
+                                            <div class="badge-live mb-1">
+                                                <span class="badge-live-dot"></span> LIVE
+                                            </div>
+                                            <div class="fw-semibold small text-dark">Set 3 · @match.DateTime.ToString("HH:mm")</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fw-normal small mb-1" style="color: #718078 !important;">FINISHED</div>
+                                        }
+                                        <div style="color: #718078 !important; font-size: 0.85rem;">
+                                            @match.MatchRound - @match.MatchDuration
+                                        </div>
+                                    </td>
+
+                                    <!-- Singles Players Column -->
+                                    <td>
+                                        <div class="d-flex flex-column gap-2 py-1">
+                                            <div class="player-row">
+                                                <span class="player-name">@FormatPlayerName(match.FirstPlayerFullName)</span>
+                                                @if (match.FirstPlayerFullName == match.WinnerFullName)
+                                                {
+                                                    <i class="bi bi-check-lg text-success fw-bold ms-1"></i>
+                                                }
+                                            </div>
+
+                                            <div class="player-row">
+                                                <span class="player-name">@FormatPlayerName(match.SecondPlayerFullName)</span>
+                                                @if (match.SecondPlayerFullName == match.WinnerFullName)
+                                                {
+                                                    <i class="bi bi-check-lg text-success fw-bold ms-1"></i>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <!-- Set 1 -->
+                                    <td class="text-center fw-bold">
+                                        @if (sets.Length > 0 && sets[0].Contains('-'))
+                                        {
+                                            var scores = sets[0].Split('-');
+                                            <div style="color: #142D25 !important;">@scores[0]</div>
+                                            <div style="color: #142D25 !important;">@scores[1]</div>
+                                        }
+                                        else
+                                        {
+                                            <div style="color: #142D25 !important;">-</div>
+                                            <div style="color: #142D25 !important;">-</div>
+                                        }
+                                    </td>
+
+                                    <!-- Set 2 -->
+                                    <td class="text-center fw-bold">
+                                        @if (sets.Length > 1 && sets[1].Contains('-'))
+                                        {
+                                            var scores = sets[1].Split('-');
+                                            <div style="color: #142D25 !important;">@scores[0]</div>
+                                            <div style="color: #142D25 !important;">@scores[1]</div>
+                                        }
+                                        else
+                                        {
+                                            <div style="color: #142D25 !important;">-</div>
+                                            <div style="color: #142D25 !important;">-</div>
+                                        }
+                                    </td>
+
+                                    <!-- Set 3 -->
+                                    <td class="text-center fw-bold">
+                                        @if (sets.Length > 2 && sets[2].Contains('-'))
+                                        {
+                                            var scores = sets[2].Split('-');
+                                            <div style="color: #142D25 !important;">@scores[0]</div>
+                                            <div style="color: #142D25!important;">@scores[1]</div>
+                                        }
+                                        else
+                                        {
+                                            <div style="color: #142D25 !important;">-</div>
+                                            <div style="color: #142D25 !important;">-</div>
+                                        }
+                                    </td>
+
+                                    <!-- PTS Column -->
+                                    <td class="text-center">
+                                        <div class="d-flex flex-column align-items-center gap-1">
+                                        </div>
+                                    </td>
+
+                                    <!-- Actions Column -->
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center align-items-center gap-1">
+                                            <a asp-action="Details" asp-route-id="@match.Id" class="action-link btn-sm" style="color: #212529; text-decoration: none; font-weight: 500;">
+                                                Details
+                                            </a>
+                                            @if (User.IsInRole("Admin"))
+                                            {
+                                                <a asp-action="Edit" asp-route-id="@match.Id" class="btn btn-sm btn-outline-warning" style="color: #212529; font-weight: 500;">
+                                                    Edit
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@match.Id" class="btn btn-sm btn-outline-danger" style="color: #212529; font-weight: 500;">
+                                                    Delete
+                                                </a>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

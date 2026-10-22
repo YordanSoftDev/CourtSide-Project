@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CourtSide.ViewModels.Players.PlayerInfoViewModel>
+
+@{
+    ViewData["Title"] = "ATP Singles Rankings";
+}
+
+<div class="container py-4">
+    <!-- Header & Action Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1" style="color: #0D3025; font-size: 1.7rem;">ATP Singles Rankings</h1>
+            <p class="text-muted mb-0 small">
+                <i class="bi bi-calendar-event me-1" style="color: #718078;"></i> 20 October 2026 &bull; <span class="fw-medium" style="color: #718078;">Weekly Standings</span>
+            </p>
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn text-white fw-medium shadow-sm px-4" style="background-color: #142D25; border-color: #142D25;">
+                <i class="bi bi-person-plus-fill me-1"></i> Add Player
+            </a>
+        }
+    </div>
+
+    <!-- Rankings Table Container -->
+    <div class="table-responsive shadow-sm rounded-3">
+        <table class="table align-middle mb-0" style="background-color: #ffffff;">
+            <thead>
+                <tr>
+                    <th scope="col" class="py-3 px-3 text-center" style="width: 80px; background-color: #EAF0E9 !important; color: #142D25 !important;">Rank</th>
+                    <th scope="col" class="py-3 px-3" style="background-color: #EAF0E9 !important; color: #142D25 !important;">Player</th>
+                    <th scope="col" class="py-3 px-3" style="background-color: #EAF0E9 !important; color: #142D25 !important;">Country</th>
+                    <th scope="col" class="py-3 px-3 text-center" style="background-color: #EAF0E9 !important; color: #142D25 !important;">Points</th>
+                    <th scope="col" class="py-3 px-3 text-center" style="background-color: #EAF0E9 !important; color: #142D25 !important;">Tournaments</th>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th scope="col" class="py-3 px-3 text-end" style="width: 120px; background-color: #EAF0E9 !important; color: #142D25 !important;">Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var player in Model)
+                {
+                    <tr style="border-bottom: 1px solid rgba(113, 128, 120, 0.2);">
+                        <!-- Rank -->
+                        <td class="text-center fw-bold" style="color: #142D25; background-color: #ffffff">
+                            @player.Rank
+                        </td>
+
+                        <!-- Player Name -->
+                        <td class="fw-semibold px-3" style="color: #212529;">
+                            @player.FullName
+                        </td>
+
+                        <!-- Country Name -->
+                        <td class="px-3" style="color: #718078;">
+                            @(string.IsNullOrEmpty(player.CountryName) ? "-" : player.CountryName)
+                        </td>
+
+                        <!-- Points -->
+                        <td class="text-center fw-medium px-3" style="color: #212529;">
+                            @(player.Points.HasValue ? player.Points.Value.ToString("N0") : "-")
+                        </td>
+
+                        <!-- Tournaments Played -->
+                        <td class="text-center fw-medium px-3" style="color: #718078;" ">
+                            @(player.TournamentsPlayed.HasValue ? player.TournamentsPlayed.Value.ToString() : "-")
+                        </td>
+
+                        <!-- Admin Actions -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td class="text-end px-3 py-2">
+                                <div class="d-flex justify-content-end gap-1">
+                                    <a asp-action="Edit" asp-route-id="@player.Id"
+                                       class="btn btn-sm btn-outline-dark" style="color: #212529; border-color: #718078;">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@player.Id"
+                                       class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
