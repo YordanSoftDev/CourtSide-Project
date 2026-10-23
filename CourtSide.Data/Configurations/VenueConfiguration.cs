@@ -63,6 +63,11 @@
                  {
                      Id = 11,
                      Name = "Palais des Sports de Gerland", 
+                 },
+                 new Venue
+                 {
+                     Id = 12,
+                     Name = "Qizhong Forest Sports City Arena"
                  }
              };
 

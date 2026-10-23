@@ -1,5 +1,6 @@
 ﻿namespace CourtSide.Data.Models
 {
+    using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using static CourtSide.Common.ValidationConstants.Player;
@@ -32,6 +33,7 @@
         public required int CountryId { get; set; }
 
         [ForeignKey(nameof(CountryId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Country Country { get; set; } = null!;
 
         //example value Palma de Mallorca, Spain

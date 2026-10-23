@@ -1,6 +1,3 @@
-/* ==========================================
-   1. Base & Reset Styles
-   ========================================== */
 html {
     font-size: 14px;
     height: 100%;
@@ -19,7 +16,6 @@ body {
     background-color: #ffffff !important;
 }
 
-/* Custom focus ring matching forest green theme */
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
@@ -40,9 +36,6 @@ body {
     text-align: start;
 }
 
-/* ==========================================
-   2. Navbar Styling & Hover Fixes
-   ========================================== */
 .navbar-custom {
     background-color: #0D3025 !important;
 }
@@ -51,19 +44,17 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #D5EF68 !important; /* Tennis Lime */
+    color: #D5EF68 !important; 
     letter-spacing: 0.5px;
 }
 
-/* Base state for custom nav links */
 .navbar-custom .navbar-nav .nav-link.custom-nav-link,
 .navbar-custom .navbar-nav .nav-link {
-    color: #B7CCC0 !important; /* Soft Sage */
+    color: #B7CCC0 !important; 
     font-weight: 500;
     transition: color 0.2s ease-in-out;
 }
 
-    /* Hover & Focus state - Tennis Lime Accent */
     .navbar-custom .navbar-nav .nav-link.custom-nav-link:hover,
     .navbar-custom .navbar-nav .nav-link:hover,
     .navbar-custom .navbar-nav .nav-link.custom-nav-link:focus,
@@ -71,9 +62,6 @@ body {
         color: #B7CCC0 !important; /* Tennis Lime */
     }
 
-/* ==========================================
-   3. Main Content & Card Styling
-   ========================================== */
 .main-content-area {
     background-color: #142D25;
     background-image: linear-gradient(rgba(13, 48, 37, 0.85), rgba(20, 45, 37, 0.95)), url('../images/home-button/home.jpg');
@@ -88,7 +76,6 @@ body {
     text-align: center;
 }
 
-/* Dark Forest Glassmorphism Card */
 .create-match-card {
     background: rgba(13, 48, 37, 0.90);
     backdrop-filter: blur(10px);
@@ -112,7 +99,25 @@ body {
     color: #142D25 !important;
 }
 
-/* Dark Modern Form Controls */
+.points-container-badge {
+    background-color: #D5EF68;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px; 
+    min-width: 60px;
+}
+
+.points-value {
+    color: #0D3025 !important;
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
 .form-control-dark, .form-select-dark {
     background-color: rgba(10, 30, 23, 0.7);
     border: 1px solid rgba(183, 204, 192, 0.3);

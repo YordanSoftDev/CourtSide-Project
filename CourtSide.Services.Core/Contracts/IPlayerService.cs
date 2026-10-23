@@ -14,6 +14,8 @@
 
         public Task<PlayerFormViewModel?> GetPlayerForEditByIdAsync(int id);
 
-        public Task<IEnumerable<PlayerInfoViewModel>> GetAllPlayersForIndexAsync();
+        public Task<IEnumerable<PlayerInfoViewModel>> GetAllMensPlayersForIndexAsync();
+
+        public Task<IEnumerable<PlayerInfoViewModel>> GetAllWomensPlayersForIndexAsync();
     }
 }

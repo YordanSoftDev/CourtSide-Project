@@ -16,12 +16,23 @@
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string category = "ATP")
         {
-            IEnumerable<PlayerInfoViewModel> players = await
-                this.service.GetAllPlayersForIndexAsync();
+            IEnumerable<PlayerInfoViewModel> players;
+
+            if (category == "WTA")
+            {
+                players = await
+                    this.service.GetAllWomensPlayersForIndexAsync();
+            }
+            else
+            {
+                players = await
+                    this.service.GetAllMensPlayersForIndexAsync();
+            }
 
             return this.View(players);
+
         }
 
         [HttpGet]

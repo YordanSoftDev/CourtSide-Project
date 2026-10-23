@@ -26,6 +26,13 @@
             color: #ffffff;
         }
 
+        .featured-card {
+            background-color: #123F30;
+            border-radius: 16px;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         .tournament-card {
             background-color: #ffffff;
             border-radius: 12px;
@@ -39,30 +46,23 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .table-header-subtle {
-            font-weight: 400 !important;
-            font-size: 0.8rem;
-            color: #6c757d !important;
-            text-transform: lowercase !important;
-            letter-spacing: 0.2px;
-        }
-
+        /* LIVE Badge with #D5EF68 background */
         .badge-live {
-            background-color: #d1fae5;
-            color: #065f46;
-            font-weight: 500;
+            background-color: #D5EF68;
+            color: #123F30;
+            font-weight: 700;
             font-size: 0.75rem;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 20px;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
 
         .badge-live-dot {
             width: 6px;
             height: 6px;
-            background-color: #10b981;
+            background-color: #123F30;
             border-radius: 50%;
         }
 
@@ -81,40 +81,39 @@
         }
 
         .serving-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #10b981;
+            width: 8px;
+            height: 8px;
+            background-color: #D5EF68;
             border-radius: 50%;
             display: inline-block;
         }
 
-        .score-digit {
-            color: #142D25 !important;
+        /* SET Score Box (Active for Set 3) */
+        .set-pill-box {
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            width: 60px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
             font-weight: 700;
+            font-size: 1.4rem;
         }
 
-        .pts-pill {
-            background-color: #EAF0E9;
-            color: #256246 !important;
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            min-width: 38px;
-            text-align: center;
-            display: inline-block;
-        }
-
-        .pts-pill-muted {
-            background-color: #EAF0E9;
-            color: #256246 !important;
-            font-weight: 600;
-            font-size: 0.85rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            min-width: 38px;
-            text-align: center;
-            display: inline-block;
+        /* POINTS Neon Green Individual Pill Styling */
+        .pts-pill-neon {
+            background-color: #D5EF68;
+            border-radius: 10px;
+            width: 64px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #123F30 !important;
+            font-weight: 800;
+            font-size: 1.4rem;
         }
 
         .badge-atp {
@@ -148,6 +147,7 @@
 
 <div class="scores-page-container py-4">
     <div class="container" style="max-width: 950px;">
+
         <!-- Header & Top Navigation Bar -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center gap-4">
@@ -166,21 +166,110 @@
             }
         </div>
 
-        <!-- Main Tournament Card -->
+        <!-- 1. FEATURED GREEN CARD -->
+        <div class="card border-0 shadow-lg featured-card p-4 mb-4">
+            <!-- Header Meta Bar -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="badge-live">
+                        <span class="badge-live-dot"></span> LIVE
+                    </div>
+                    <span class="small text-uppercase" style="color: #B7CCC0 !important; font-weight: 400 !important; letter-spacing: 0.5px; font-size: 0.8rem;">
+                        ATP 1000 &bull; Shanghai Masters &bull; Final
+                    </span>
+                </div>
+                <span class="text-uppercase" style="color: #B7CCC0 !important; font-weight: 400 !important; font-size: 0.75rem; letter-spacing: 1px;">
+                    FEATURED MATCH
+                </span>
+            </div>
+
+            <div class="small mb-3" style="color: rgba(255, 255, 255, 0.65);">
+                STADIUM COURT &bull; 18 October 2026 &bull; 2H 15M
+            </div>
+
+            <!-- Scoreboard Grid -->
+            <div class="row align-items-center g-3 my-1">
+                <!-- Players Column -->
+                <div class="col-6">
+                    <!-- Player 1: Alejandro Davidovich Fokina -->
+                    <div class="d-flex align-items-center gap-2 mb-3" style="height: 44px;">
+                        <span class="fi fi-es fs-5"></span>
+                        <span class="fw-bold fs-4 text-white">
+                            Alejandro Davidovich Fokina
+                        </span>
+                        <span class="serving-dot ms-1"></span>
+                    </div>
+
+                    <!-- Player 2: Rafael Jódar -->
+                    <div class="d-flex align-items-center gap-2" style="height: 44px;">
+                        <span class="fi fi-es fs-5"></span>
+                        <span class="fw-bold fs-4" style="color: rgba(255, 255, 255, 0.85);">
+                            Rafael Jódar
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Sets & Points Column -->
+                <div class="col-6">
+                    <div class="d-flex justify-content-end align-items-center gap-3 text-center">
+                        <!-- SET 1 -->
+                        <div class="d-flex flex-column align-items-center gap-2" style="width: 50px;">
+                            <div class="text-uppercase" style="font-size: 0.65rem; color: rgba(255, 255, 255, 0.5); letter-spacing: 0.5px;">SET 1</div>
+                            <div class="fw-bold fs-3 text-white d-flex align-items-center justify-content-center" style="height: 44px;">1</div>
+                            <div class="fw-bold fs-3 d-flex align-items-center justify-content-center" style="color: rgba(255, 255, 255, 0.85); height: 44px;">6</div>
+                        </div>
+
+                        <!-- SET 2 -->
+                        <div class="d-flex flex-column align-items-center gap-2" style="width: 50px;">
+                            <div class="text-uppercase" style="font-size: 0.65rem; color: rgba(255, 255, 255, 0.5); letter-spacing: 0.5px;">SET 2</div>
+                            <div class="fw-bold fs-3 text-white d-flex align-items-center justify-content-center" style="height: 44px;">7</div>
+                            <div class="fw-bold fs-3 d-flex align-items-center justify-content-center" style="color: rgba(255, 255, 255, 0.85); height: 44px;">6</div>
+                        </div>
+
+                        <!-- SET 3 (Dark Semi-Transparent Pills) -->
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <div class="text-uppercase" style="font-size: 0.65rem; color: rgba(255, 255, 255, 0.5); letter-spacing: 0.5px;">SET 3</div>
+                            <div class="set-pill-box">5</div>
+                            <div class="set-pill-box">4</div>
+                        </div>
+
+                        <!-- POINTS (Neon Green Pills) -->
+                        <div class="d-flex flex-column align-items-center gap-2 ms-2">
+                            <div class="text-uppercase" style="font-size: 0.65rem; color: rgba(255, 255, 255, 0.5); letter-spacing: 0.5px;">POINTS</div>
+                            <div class="pts-pill-neon">30</div>
+                            <div class="pts-pill-neon">15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bar -->
+            <div class="d-flex justify-content-start align-items-center mt-3 pt-2 border-top" style="border-color: rgba(255, 255, 255, 0.1) !important;">
+                <span class="small" style="color: rgba(255, 255, 255, 0.65);">
+                    &bull; Davidovich Fokina serving for the match &bull; Deciding set
+                </span>
+            </div>
+        </div>
+
+        <!-- 2. SECTION HEADER -->
+        <div class="mb-3">
+            <h2 class="fw-bold mb-1" style="color: #0D3025; font-size: 1.6rem;">ATP singles matches</h2>
+            <p class="text-muted mb-0 small" style="color: #718078 !important;">
+                20 October 2026
+            </p>
+        </div>
+
+        <!-- 3. MAIN TOURNAMENT CARD -->
         <div class="tournament-card shadow-lg mb-4">
 
             <!-- Tournament Header Bar -->
             <div class="p-3 border-bottom d-flex justify-content-between align-items-center" style="background-color: #EAF0E9 !important;">
                 <div class="d-flex align-items-center gap-3">
-                    <span class="badge-atp">ATP 250</span>
+                    <span class="badge-atp">ATP 1000</span>
                     <div>
-                        <h5 class="mb-0 fw-bold" style="color: #142D25 !important;">ATP Lyon Open 2026</h5>
-                        <small style="color: #718078 !important;">Lyon, France · Hard Indoor</small>
+                        <h5 class="mb-0 fw-bold" style="color: #142D25 !important;">Shanghai Masters</h5>
+                        <small style="color: #718078 !important;">Shanghai, China · Hard Indoor</small>
                     </div>
-                </div>
-                <div class="d-flex align-items-center gap-2 small" style="color: #718078 !important;">
-                    <span>@(Model?.Count() ?? 0) matches</span>
-                    <i class="bi bi-chevron-up"></i>
                 </div>
             </div>
 
@@ -283,7 +372,7 @@
                                         {
                                             var scores = sets[2].Split('-');
                                             <div style="color: #142D25 !important;">@scores[0]</div>
-                                            <div style="color: #142D25!important;">@scores[1]</div>
+                                            <div style="color: #142D25 !important;">@scores[1]</div>
                                         }
                                         else
                                         {
@@ -293,9 +382,9 @@
                                     </td>
 
                                     <!-- PTS Column -->
-                                    <td class="text-center">
-                                        <div class="d-flex flex-column align-items-center gap-1">
-                                        </div>
+                                    <td class="text-center fw-bold">
+                                        <div style="color: #142D25 !important;">-</div>
+                                        <div style="color: #142D25 !important;">-</div>
                                     </td>
 
                                     <!-- Actions Column -->
