@@ -20,7 +20,7 @@
 
         public MatchRound MatchRound { get; set; }
 
-        public string MatchDuration { get; set; }
+        public string MatchDuration { get; set; } = string.Empty;
 
         public CourtSurface CourtSurface { get; set; }
 
