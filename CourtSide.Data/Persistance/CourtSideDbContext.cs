@@ -3,15 +3,16 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using CourtSide.Data.Models;
+    using Microsoft.AspNetCore.Identity;
 
-    public partial class CourtSideDbContext : IdentityDbContext<ApplicationUser>
+    public partial class CourtSideDbContext : IdentityDbContext<IdentityUser>
     {
         public CourtSideDbContext(DbContextOptions<CourtSideDbContext> options)
         : base(options)
         {
         }
 
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<IdentityUser> IdentityUsers { get; set; }
         public virtual DbSet<Coach> Coaches { get; set; } = null!;
         public virtual DbSet<Country> Countries { get; set; } = null!;
         public virtual DbSet<Match> Matches { get; set; } = null!;

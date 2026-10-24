@@ -8,6 +8,8 @@
 
     public class MatchFormViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Please select a First Player.")]
         [Range(1, 80)]
         [Display(Name = "First Player")]
@@ -25,6 +27,8 @@
 
         [Required(ErrorMessage = "Please select a Date and Time.")]
         [Display(Name = "Date Time")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime? DateTime { get; set; }
 
         [Required(ErrorMessage = "Please select a Match Status.")]
@@ -39,11 +43,11 @@
         [Display(Name = "Match Round")]
         public MatchRound? MatchRound { get; set; }
 
-        [Required(ErrorMessage = "Please enter a Match Duration.")]
-        [RegularExpression(@"^(?:(\d{1,2})h\s*)?(?:(\d{1,2})m)?$",
-         ErrorMessage = "Duration must be in the format '1h 45m', '2h 00m', or '31m'.")]
-        [Display(Name = "Match Duration")]
-        public string? MatchDuration { get; set; }
+        //[Required(ErrorMessage = "Please enter a Match Duration.")]
+        //[RegularExpression(@"^(?:(\d{1,2})h\s*)?(?:(\d{1,2})m)?$",
+        // ErrorMessage = "Duration must be in the format '1h 45m', '2h 00m', or '31m'.")]
+        //[Display(Name = "Match Duration")]
+        //public string? MatchDuration { get; set; }
 
         [Required(ErrorMessage = "Please select a Court Name.")]
         [StringLength(CourtNameMaxLength, MinimumLength = CourtNameMinLength,

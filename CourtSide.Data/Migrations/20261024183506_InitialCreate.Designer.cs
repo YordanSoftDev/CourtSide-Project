@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourtSide.Data.Migrations
 {
     [DbContext(typeof(CourtSideDbContext))]
-    [Migration("20261023204700_InitialCreate")]
+    [Migration("20261024183506_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1076,10 +1076,6 @@ namespace CourtSide.Data.Migrations
                     b.Property<int>("FirstPlayerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("MatchDuration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MatchRound")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -1129,7 +1125,6 @@ namespace CourtSide.Data.Migrations
                             CourtSurface = "Hard",
                             DateTime = new DateTime(2026, 10, 15, 13, 10, 0, 0, DateTimeKind.Utc),
                             FirstPlayerId = 5,
-                            MatchDuration = "1h 40m",
                             MatchRound = "Quarterfinal",
                             MatchStatus = "Completed",
                             ScoreResult = "6-4 5-4",
@@ -1146,7 +1141,6 @@ namespace CourtSide.Data.Migrations
                             CourtSurface = "Hard",
                             DateTime = new DateTime(2026, 10, 15, 9, 40, 0, 0, DateTimeKind.Utc),
                             FirstPlayerId = 92,
-                            MatchDuration = "1h 01m",
                             MatchRound = "Quarterfinal",
                             MatchStatus = "Completed",
                             ScoreResult = "1-4",
@@ -1163,7 +1157,6 @@ namespace CourtSide.Data.Migrations
                             CourtSurface = "Hard",
                             DateTime = new DateTime(2026, 10, 16, 13, 10, 0, 0, DateTimeKind.Utc),
                             FirstPlayerId = 4,
-                            MatchDuration = "2h 05m",
                             MatchRound = "Quarterfinal",
                             MatchStatus = "Completed",
                             ScoreResult = "6-3 1-6 6-3",
@@ -1180,7 +1173,6 @@ namespace CourtSide.Data.Migrations
                             CourtSurface = "Hard",
                             DateTime = new DateTime(2026, 10, 16, 9, 40, 0, 0, DateTimeKind.Utc),
                             FirstPlayerId = 91,
-                            MatchDuration = "2h 30m",
                             MatchRound = "Quarterfinal",
                             MatchStatus = "Completed",
                             ScoreResult = "4-6 6-4 6-3",
@@ -1197,7 +1189,6 @@ namespace CourtSide.Data.Migrations
                             CourtSurface = "Hard",
                             DateTime = new DateTime(2026, 10, 17, 11, 40, 0, 0, DateTimeKind.Utc),
                             FirstPlayerId = 5,
-                            MatchDuration = "2h 20m",
                             MatchRound = "Semifinal",
                             MatchStatus = "Completed",
                             ScoreResult = "7-5 4-6 3-6",
@@ -1214,7 +1205,6 @@ namespace CourtSide.Data.Migrations
                             CourtSurface = "Hard",
                             DateTime = new DateTime(2026, 10, 17, 14, 10, 0, 0, DateTimeKind.Utc),
                             FirstPlayerId = 91,
-                            MatchDuration = "1h 25m",
                             MatchRound = "Semifinal",
                             MatchStatus = "Completed",
                             ScoreResult = "6-3 6-4",
@@ -4138,7 +4128,59 @@ namespace CourtSide.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CourtSide.Data.Persistance.ApplicationUser", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -4201,58 +4243,6 @@ namespace CourtSide.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -4434,7 +4424,7 @@ namespace CourtSide.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("CourtSide.Data.Persistance.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4443,7 +4433,7 @@ namespace CourtSide.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("CourtSide.Data.Persistance.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4458,7 +4448,7 @@ namespace CourtSide.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CourtSide.Data.Persistance.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4467,7 +4457,7 @@ namespace CourtSide.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("CourtSide.Data.Persistance.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

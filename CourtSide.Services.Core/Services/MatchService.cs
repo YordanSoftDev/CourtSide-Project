@@ -2,19 +2,20 @@
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-    using Microsoft.EntityFrameworkCore;
     using CourtSide.Data.Models;
     using CourtSide.Data.Persistance;
     using CourtSide.Services.Core.Contracts;
     using CourtSide.ViewModels.Matches;
     using CourtSide.ViewModels.Players;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using Microsoft.EntityFrameworkCore;
 
-    public class SQLMatchService : IMatchService
+    public class MatchService : IMatchService
     {
         private readonly CourtSideDbContext context;
         private readonly IMapper mapper;
 
-        public SQLMatchService(CourtSideDbContext context,
+        public MatchService(CourtSideDbContext context,
         IMapper mapper)
         {
             this.context = context;
@@ -41,6 +42,8 @@
             }
 
             this.mapper.Map(matchForm, matchToUpdate);
+
+            var entry = this.context.Entry(matchToUpdate);
 
             await this.context.SaveChangesAsync();
 
@@ -77,8 +80,8 @@
         {
             return await this.context.Matches
                 .AsNoTracking()
-               .OrderBy(m => m.DateTime)
-               .ThenBy(m => m.Id)
+               .OrderByDescending(m => m.DateTime)
+               .ThenByDescending(m => m.Id)
                .ProjectTo<MatchInfoViewModel>(this.mapper.ConfigurationProvider)
                .ToListAsync();
         }
@@ -91,6 +94,6 @@
                 .ThenBy(p => p.FirstName)
                 .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
-        }
+        }       
     }
 }

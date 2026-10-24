@@ -11,12 +11,12 @@
     using CourtSide.Services.Core.Contracts;
     using CourtSide.ViewModels.Tournaments;
 
-    public class SQLTournamentService : ITournamentService
+    public class TournamentService : ITournamentService
     {
         private readonly CourtSideDbContext context;
         private readonly IMapper mapper;
 
-        public SQLTournamentService(CourtSideDbContext context,
+        public TournamentService(CourtSideDbContext context,
             IMapper mapper)
         {
             this.context = context;

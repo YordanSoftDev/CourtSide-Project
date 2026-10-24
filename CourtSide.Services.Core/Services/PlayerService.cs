@@ -8,12 +8,12 @@
     using CourtSide.Services.Core.Contracts;
     using CourtSide.ViewModels.Players;
 
-    public class SQLPlayerService : IPlayerService
+    public class PlayerService : IPlayerService
     {
         private readonly CourtSideDbContext context;
         private readonly IMapper mapper;
 
-        public SQLPlayerService(CourtSideDbContext context,
+        public PlayerService(CourtSideDbContext context,
         IMapper mapper)
         {
             this.context = context;

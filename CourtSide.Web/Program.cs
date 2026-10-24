@@ -23,7 +23,7 @@ if (string.IsNullOrWhiteSpace(connectionString))
 builder.Services.AddDbContext<CourtSideDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireDigit = false;
@@ -31,14 +31,16 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
 })
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<CourtSideDbContext>();
 
 builder.Services.AddAutoMapper(cfg =>
-    cfg.AddMaps(typeof(SQLMatchService).Assembly));
+    cfg.AddMaps(typeof(MatchService).Assembly));
 
-builder.Services.AddScoped<IMatchService, SQLMatchService>();
-builder.Services.AddScoped<IPlayerService, SQLPlayerService>();
-builder.Services.AddScoped<ITournamentService, SQLTournamentService>();
+builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddScoped<IPlayerService, PlayerService>();
+builder.Services.AddScoped<ITournamentService, TournamentService>();
+builder.Services.AddScoped<IVenueService, VenueService>();
 
 WebApplication? app = builder.Build();
 
@@ -69,33 +71,5 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 app.MapRazorPages();
-
-try
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-        string roleName = "Admin";
-        if (!await roleManager.RoleExistsAsync(roleName))
-        {
-            await roleManager.CreateAsync(new IdentityRole(roleName));
-            Console.WriteLine("[SEEDS] Created 'Admin' role successfully.");
-        }
-
-        var adminUser = await userManager.FindByEmailAsync("admin@CourtSide.com");
-        if (adminUser != null && !await userManager.IsInRoleAsync(adminUser, roleName))
-        {
-            await userManager.AddToRoleAsync(adminUser, roleName);
-        }
-    }
-}
-catch (Exception ex)
-{
-    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "An error occurred while seeding the database with the admin role.");
-}
 
 app.Run();

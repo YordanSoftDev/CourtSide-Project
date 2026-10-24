@@ -288,7 +288,6 @@ namespace CourtSide.Data.Migrations
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MatchStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     MatchRound = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    MatchDuration = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CourtSurface = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CourtName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CourtEnvironment = table.Column<int>(type: "int", maxLength: 20, nullable: true),
@@ -765,15 +764,15 @@ namespace CourtSide.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Matches",
-                columns: new[] { "Id", "CourtEnvironment", "CourtName", "CourtSurface", "DateTime", "FirstPlayerId", "MatchDuration", "MatchRound", "MatchStatus", "ScoreResult", "SecondPlayerId", "TournamentId", "VenueId", "WinnerId" },
+                columns: new[] { "Id", "CourtEnvironment", "CourtName", "CourtSurface", "DateTime", "FirstPlayerId", "MatchRound", "MatchStatus", "ScoreResult", "SecondPlayerId", "TournamentId", "VenueId", "WinnerId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Court 1", "Hard", new DateTime(2026, 10, 15, 13, 10, 0, 0, DateTimeKind.Utc), 5, "1h 40m", "Quarterfinal", "Completed", "6-4 5-4", 11, 11, 12, 5 },
-                    { 2, 1, "Court 2", "Hard", new DateTime(2026, 10, 15, 9, 40, 0, 0, DateTimeKind.Utc), 92, "1h 01m", "Quarterfinal", "Completed", "1-4", 44, 11, 12, 44 },
-                    { 3, 1, "Centre Court", "Hard", new DateTime(2026, 10, 16, 13, 10, 0, 0, DateTimeKind.Utc), 4, "2h 05m", "Quarterfinal", "Completed", "6-3 1-6 6-3", 41, 11, 12, 4 },
-                    { 4, 1, "Court 1", "Hard", new DateTime(2026, 10, 16, 9, 40, 0, 0, DateTimeKind.Utc), 91, "2h 30m", "Quarterfinal", "Completed", "4-6 6-4 6-3", 8, 11, 12, 91 },
-                    { 5, 1, "Centre Court", "Hard", new DateTime(2026, 10, 17, 11, 40, 0, 0, DateTimeKind.Utc), 5, "2h 20m", "Semifinal", "Completed", "7-5 4-6 3-6", 44, 11, 12, 44 },
-                    { 6, 1, "Court 2", "Hard", new DateTime(2026, 10, 17, 14, 10, 0, 0, DateTimeKind.Utc), 91, "1h 25m", "Semifinal", "Completed", "6-3 6-4", 4, 11, 12, 91 }
+                    { 1, 1, "Court 1", "Hard", new DateTime(2026, 10, 15, 13, 10, 0, 0, DateTimeKind.Utc), 5, "Quarterfinal", "Completed", "6-4 5-4", 11, 11, 12, 5 },
+                    { 2, 1, "Court 2", "Hard", new DateTime(2026, 10, 15, 9, 40, 0, 0, DateTimeKind.Utc), 92, "Quarterfinal", "Completed", "1-4", 44, 11, 12, 44 },
+                    { 3, 1, "Centre Court", "Hard", new DateTime(2026, 10, 16, 13, 10, 0, 0, DateTimeKind.Utc), 4, "Quarterfinal", "Completed", "6-3 1-6 6-3", 41, 11, 12, 4 },
+                    { 4, 1, "Court 1", "Hard", new DateTime(2026, 10, 16, 9, 40, 0, 0, DateTimeKind.Utc), 91, "Quarterfinal", "Completed", "4-6 6-4 6-3", 8, 11, 12, 91 },
+                    { 5, 1, "Centre Court", "Hard", new DateTime(2026, 10, 17, 11, 40, 0, 0, DateTimeKind.Utc), 5, "Semifinal", "Completed", "7-5 4-6 3-6", 44, 11, 12, 44 },
+                    { 6, 1, "Court 2", "Hard", new DateTime(2026, 10, 17, 14, 10, 0, 0, DateTimeKind.Utc), 91, "Semifinal", "Completed", "6-3 6-4", 4, 11, 12, 91 }
                 });
 
             migrationBuilder.CreateIndex(

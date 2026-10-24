@@ -23,7 +23,7 @@
                     CourtName = "Court 1",
                     MatchRound = MatchRound.Quarterfinal,
                     MatchStatus = MatchStatus.Completed,
-                    MatchDuration = "1h 40m",
+                    //MatchDuration = "1h 40m",
                     ScoreResult = "6-4 5-4",
                     WinnerId = 5
                 },
@@ -40,7 +40,7 @@
                     CourtName = "Court 2",
                     MatchRound = MatchRound.Quarterfinal,
                     MatchStatus = MatchStatus.Completed,
-                    MatchDuration = "1h 01m",
+                    //MatchDuration = "1h 01m",
                     ScoreResult = "1-4",
                     WinnerId = 44
                 },
@@ -57,7 +57,7 @@
                     CourtName = "Centre Court",
                     MatchRound = MatchRound.Quarterfinal,
                     MatchStatus = MatchStatus.Completed,
-                    MatchDuration = "2h 05m",
+                    //MatchDuration = "2h 05m",
                     ScoreResult = "6-3 1-6 6-3",
                     WinnerId = 4
                 },
@@ -74,7 +74,7 @@
                     CourtName = "Court 1",
                     MatchRound = MatchRound.Quarterfinal,
                     MatchStatus = MatchStatus.Completed,
-                    MatchDuration = "2h 30m",
+                    //MatchDuration = "2h 30m",
                     ScoreResult = "4-6 6-4 6-3",
                     WinnerId = 91
                 },
@@ -91,7 +91,7 @@
                     CourtName = "Centre Court",
                     MatchRound = MatchRound.Semifinal,
                     MatchStatus = MatchStatus.Completed,
-                    MatchDuration = "2h 20m",
+                    //MatchDuration = "2h 20m",
                     ScoreResult = "7-5 4-6 3-6",
                     WinnerId = 44
                 },
@@ -108,7 +108,7 @@
                     CourtName = "Court 2",
                     MatchRound = MatchRound.Semifinal,
                     MatchStatus = MatchStatus.Completed,
-                    MatchDuration = "1h 25m",
+                    //MatchDuration = "1h 25m",
                     ScoreResult = "6-3 6-4",
                     WinnerId = 91
                 },

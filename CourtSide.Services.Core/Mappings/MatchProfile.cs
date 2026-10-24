@@ -9,9 +9,11 @@
     {
         public MatchProfile()
         {
-            this.CreateMap<MatchFormViewModel, Match>();
-            this.CreateMap<Match, MatchFormViewModel>();
-                
+            this.CreateMap<MatchFormViewModel, Match>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            this.CreateMap<Match, MatchFormViewModel>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+
 
             this.CreateMap<Match, MatchDetailsViewModel>()  
                 .ForMember(dest => dest.VenueName,
