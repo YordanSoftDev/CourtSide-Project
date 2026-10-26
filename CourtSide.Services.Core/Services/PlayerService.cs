@@ -2,11 +2,12 @@
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-    using Microsoft.EntityFrameworkCore;
+    using CourtSide.Common.MatchEnumerations;
     using CourtSide.Data.Models;
     using CourtSide.Data.Persistance;
     using CourtSide.Services.Core.Contracts;
     using CourtSide.ViewModels.Players;
+    using Microsoft.EntityFrameworkCore;
 
     public class PlayerService : IPlayerService
     {
@@ -86,11 +87,54 @@
         public async Task<IEnumerable<PlayerInfoViewModel>> GetAllWomensPlayersForIndexAsync()
         {
             return await this.context.Players
-                .Where(p => p.Id > 90)
+                .Where(p => p.Id > 92)
                 .AsNoTracking()
                 .OrderBy(p => p.Rank)
                 .ThenBy(p => p.Id)
                 .ProjectTo<PlayerInfoViewModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync()
+        {
+            return await this.context.Players
+                .AsNoTracking()
+                .OrderBy(p => p.LastName)
+                .ThenBy(p => p.FirstName)
+                .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PlayerSelectViewModel>> GetPlayersByTournamentIdAsync(int tournamentId)
+        {
+            var tournament = await this.context.Tournaments
+                .AsNoTracking()
+                .FirstOrDefaultAsync(t => t.Id == tournamentId);
+
+            if (tournament == null)
+            {
+                return Enumerable.Empty<PlayerSelectViewModel>();
+            }
+
+            var query = this.context.Players.AsNoTracking();
+
+            string type = tournament.TournamentType;
+
+            if (type.StartsWith("WTA", StringComparison.OrdinalIgnoreCase) ||
+                type.Equals("ITF Women", StringComparison.OrdinalIgnoreCase))
+            {
+                query = query.Where(p => p.Gender == Gender.Female);
+            }
+            else if (type.StartsWith("ATP", StringComparison.OrdinalIgnoreCase) ||
+                     type.Equals("ITF Men", StringComparison.OrdinalIgnoreCase))
+            {
+                query = query.Where(p => p.Gender == Gender.Male);
+            }
+
+            return await query
+                .OrderBy(p => p.LastName)
+                .ThenBy(p => p.FirstName)
+                .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
     }

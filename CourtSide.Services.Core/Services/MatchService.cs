@@ -6,8 +6,6 @@
     using CourtSide.Data.Persistance;
     using CourtSide.Services.Core.Contracts;
     using CourtSide.ViewModels.Matches;
-    using CourtSide.ViewModels.Players;
-    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class MatchService : IMatchService
@@ -84,16 +82,6 @@
                .ThenByDescending(m => m.Id)
                .ProjectTo<MatchInfoViewModel>(this.mapper.ConfigurationProvider)
                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync()
-        {
-            return await this.context.Players
-                .AsNoTracking()
-                .OrderBy(p => p.LastName)
-                .ThenBy(p => p.FirstName)
-                .ProjectTo<PlayerSelectViewModel>(this.mapper.ConfigurationProvider)
-                .ToListAsync();
-        }       
+        }     
     }
 }

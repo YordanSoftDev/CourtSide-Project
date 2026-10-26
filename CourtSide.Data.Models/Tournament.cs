@@ -14,6 +14,11 @@
         [MaxLength(TournamentNameMaxLength)]
         public required string TournamentName { get; set; }
 
+        //example value ATP 250
+        [Required]
+        [MaxLength(TournamentTypeMaxLength)]
+        public required string TournamentType { get; set; }
+
         //example value Almaty, Kazakhstan
         [Required]
         [MaxLength(LocationMaxLength)]
@@ -28,11 +33,6 @@
         [Required]
         [Column(TypeName = "datetime2")]
         public required DateTime EndDate { get; set; }
-
-        //example value ATP 250
-        [Required]
-        [MaxLength(TournamentTypeMaxLength)]
-        public required string TournamentType { get; set; }
 
         //the variants are Grass, Clay, Hard, Carpet 
         [MaxLength(CourtSurfaceMaxLength)]

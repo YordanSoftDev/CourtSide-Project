@@ -1,9 +1,10 @@
 ﻿namespace CourtSide.Services.Core.Mappings
 {
     using AutoMapper;
+    using CourtSide.Common.MatchEnumerations;
+    using CourtSide.Data.Models;
     using CourtSide.ViewModels.Matches;
     using CourtSide.ViewModels.Players;
-    using CourtSide.Data.Models;
 
     public class MatchProfile : Profile
     {
@@ -40,9 +41,12 @@
                 .ForMember(dest => dest.VenueName,
                 opt => opt
                 .MapFrom(src => src.Venue.Name))
-                .ForMember(dest => dest.TournamentName,
+                .ForMember(dest => dest.TournamentType,
                 opt => opt
-                .MapFrom(src => src.Tournament.TournamentName))
+                .MapFrom(src => src.Tournament.TournamentType
+                .StartsWith("WTA") || src.FirstPlayer.Gender == Gender.Female ? "WTA"
+                : "ATP"))
+
                 .ForMember(dest => dest.FirstPlayerFullName,
                 opt => opt
                 .MapFrom(src => $"{src.FirstPlayer.FirstName} " +
@@ -55,11 +59,6 @@
                 opt => opt
                 .MapFrom(src => src.Winner != null ? $"{src.Winner.FirstName} " +
                 $"{src.Winner.LastName}" : null));
-
-            this.CreateMap<Player, PlayerSelectViewModel>()
-                .ForMember(dest => dest.FullName,
-                opt => opt
-                .MapFrom(src => $"{src.FirstName} {src.LastName}"));
         }
     }
 }

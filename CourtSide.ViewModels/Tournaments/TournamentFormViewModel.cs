@@ -36,6 +36,7 @@
         [Required(ErrorMessage = "Tournament type is required.")]
         [StringLength(TournamentTypeMaxLength, MinimumLength = TournamentTypeMinLength,
             ErrorMessage = "Tournament type must be between 3 and " + "50 characters.")]
+
         [Display(Name = "Tournament Type")]
         public string? TournamentType { get; set; }
 

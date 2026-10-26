@@ -6,21 +6,26 @@
     using CourtSide.Common.MatchEnumerations;
     using CourtSide.Services.Core.Contracts;
     using CourtSide.ViewModels.Matches;
+    using CourtSide.ViewModels.Players;
+    using CourtSide.ViewModels.Tournaments;
+    using CourtSide.ViewModels.Venues;
 
     public class MatchesController : BaseController
     {
         private readonly IMatchService matchService;
+        private readonly IPlayerService playerService;
         private readonly ITournamentService tournamentService;
         private readonly IVenueService venueService;
 
         public MatchesController(
             IMatchService matchService,
             ITournamentService tournamentService,
-            IVenueService venueService)
+            IVenueService venueService, IPlayerService playerService)
         {
             this.matchService = matchService;
             this.tournamentService = tournamentService;
             this.venueService = venueService;
+            this.playerService = playerService;
         }
 
         [HttpGet]
@@ -194,26 +199,49 @@
 
         private async Task PopulateDropdownsAsync(MatchFormViewModel model)
         {
-            var players = await this.matchService.GetPlayersForSelectAsync();
+            IEnumerable<PlayerSelectViewModel>? players = await this.playerService.GetPlayersForSelectAsync();
             model.Players = players.Select(p => new SelectListItem
             {
                 Value = p.Id.ToString(),
                 Text = p.FullName
             });
 
-            var tournaments = await this.tournamentService.GetAllTournamentsForIndexAsync();
+            IEnumerable<TournamentInfoViewModel>? tournaments = await this.tournamentService.GetAllTournamentsForIndexAsync();
             model.Tournaments = tournaments.Select(t => new SelectListItem
             {
                 Value = t.Id.ToString(),
-                Text = t.TournamentName
+                Text = $"{t.TournamentName} ({t.TournamentType})"
             });
 
-            var venues = await this.venueService.GetAllVenuesAsync();
+            IEnumerable<VenueSelectViewModel>? venues = await this.venueService.GetAllVenuesAsync();
             model.Venues = venues.Select(v => new SelectListItem
             {
                 Value = v.Id.ToString(),
                 Text = v.Name
             });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPlayersByTournament(int? tournamentId)
+        {
+            IEnumerable<PlayerSelectViewModel> players;
+
+            if (!tournamentId.HasValue || tournamentId.Value <= 0)
+            {
+                players = await this.playerService.GetPlayersForSelectAsync();
+            }
+            else
+            {
+                players = await this.playerService.GetPlayersByTournamentIdAsync(tournamentId.Value);
+            }
+
+            var result = players.Select(p => new
+            {
+                id = p.Id,
+                fullName = p.FullName
+            });
+
+            return this.Json(result);
         }
     }
 }

@@ -17,5 +17,9 @@
         public Task<IEnumerable<PlayerInfoViewModel>> GetAllMensPlayersForIndexAsync();
 
         public Task<IEnumerable<PlayerInfoViewModel>> GetAllWomensPlayersForIndexAsync();
+
+        public Task<IEnumerable<PlayerSelectViewModel>> GetPlayersForSelectAsync();
+
+        public Task<IEnumerable<PlayerSelectViewModel>> GetPlayersByTournamentIdAsync(int tournamentId);
     }
 }

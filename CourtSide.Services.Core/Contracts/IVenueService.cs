@@ -1,9 +1,9 @@
-﻿
-namespace CourtSide.Services.Core.Contracts
+﻿namespace CourtSide.Services.Core.Contracts
 {
-    using CourtSide.Data.Models;
+    using CourtSide.ViewModels.Venues;
+
     public interface IVenueService
     {
-        public Task<IEnumerable<Venue>> GetAllVenuesAsync();
+        public Task<IEnumerable<VenueSelectViewModel>> GetAllVenuesAsync();
     }
 }

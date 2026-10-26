@@ -1,5 +1,6 @@
 ﻿namespace CourtSide.Data.Models
 {
+    using CourtSide.Common.MatchEnumerations;
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -17,6 +18,9 @@
         [Required]
         [MaxLength(LastNameMaxLength)]
         public required string LastName { get; set; }
+
+        [MaxLength(GenderMaxLength)]
+        public required Gender Gender { get; set; }
 
         public required int Age { get; set; }
 

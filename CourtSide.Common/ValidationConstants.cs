@@ -38,6 +38,8 @@
             public const int LastNameMinLength = 2;
             public const int LastNameMaxLength = 20;
 
+            public const int GenderMaxLength = 20;
+
             public const int WeightMinLength = 2;
             public const int WeightMaxLength = 25;
 

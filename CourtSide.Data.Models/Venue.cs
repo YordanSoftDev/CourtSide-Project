@@ -8,7 +8,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(NameMaxLength)]
+        [MaxLength(NameMaxLength)]                          
         public required string Name { get; set; }
 
         public virtual ICollection<TournamentVenue> TournamentVenues { get; set; } =
