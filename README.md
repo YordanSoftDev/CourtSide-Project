@@ -10,10 +10,10 @@ CourtSide is a tennis management and scoring web application designed to track r
 
 ## 📋 Table of Contents
 
-- [About the Project] 
+- About the Project 
 - CourtSide is a web platform developed using ASP.NET Core MVC 10.0 and Entity Framework Core. It allows tracking tournaments, player statistics, rankings, and match scoring.
 
-- [Technologies Used]
+- Technologies Used
 - Backend: C#, .NET 10.0, ASP.NET Core MVC, Entity Framework Core
 - Database: Microsoft SQL Server
 - Frontend: Bootstrap 5, Bootstrap Icons, Inter & Montserrat Google Fonts, JavaScript / jQuery
