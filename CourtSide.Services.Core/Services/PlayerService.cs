@@ -76,10 +76,11 @@
         public async Task<IEnumerable<PlayerInfoViewModel>> GetAllMensPlayersForIndexAsync()
         {
             return await this.context.Players
-                .Where(p=> p.Id > 1 && p.Id < 91)
+                .Where(p=> p.Id > 0 && p.Id < 133)
                 .AsNoTracking()
                 .OrderBy(p => p.Rank)
                 .ThenBy(p => p.Id)
+                .Take(100)
                 .ProjectTo<PlayerInfoViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
@@ -87,10 +88,11 @@
         public async Task<IEnumerable<PlayerInfoViewModel>> GetAllWomensPlayersForIndexAsync()
         {
             return await this.context.Players
-                .Where(p => p.Id > 92)
+                .Where(p => p.Id > 1000)
                 .AsNoTracking()
                 .OrderBy(p => p.Rank)
                 .ThenBy(p => p.Id)
+                .Take(100)
                 .ProjectTo<PlayerInfoViewModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }

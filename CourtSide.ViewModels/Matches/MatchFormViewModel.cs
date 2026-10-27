@@ -11,7 +11,6 @@
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please select a First Player.")]
-        [Range(1, 80)]
         [Display(Name = "First Player")]
         public int? FirstPlayerId { get; set; }
 

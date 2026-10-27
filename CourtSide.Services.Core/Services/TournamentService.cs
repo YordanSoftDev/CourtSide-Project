@@ -23,7 +23,7 @@
             this.mapper = mapper;
         }
 
-        public async Task<int> CreateTournamentAsync(TournamentFormViewModel tournamentForm /*int userId*/)
+        public async Task<int> CreateTournamentAsync(TournamentFormViewModel tournamentForm)
         {
             Tournament newTournament = this.mapper.Map<Tournament>(tournamentForm);
 
@@ -33,7 +33,7 @@
             return newTournament.Id;
         }
 
-        public async Task<bool> UpdateTournamentAsync(int id, TournamentFormViewModel tournamentForm /*int userId*/)
+        public async Task<bool> UpdateTournamentAsync(int id, TournamentFormViewModel tournamentForm)
         {
             var tournamentToUpdate = await this.context.Tournaments.FindAsync(id);
 
@@ -49,7 +49,7 @@
             return true;
         }
 
-        public async Task<bool> DeleteTournamentAsync(int id /*int userId*/)
+        public async Task<bool> DeleteTournamentAsync(int id)
         {
             int rowsAffected = await this.context.Tournaments
                 .Where(m => m.Id == id)
@@ -58,7 +58,7 @@
             return rowsAffected > 0;
         }
 
-        public async Task<TournamentDetailsViewModel?> GetTournamentDetailsByIdAsync(int id /*int userId*/)
+        public async Task<TournamentDetailsViewModel?> GetTournamentDetailsByIdAsync(int id)
         {
             return await this.context.Tournaments
                 .AsNoTracking()
@@ -67,7 +67,7 @@
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id /*int userId*/)
+        public async Task<TournamentFormViewModel?> GetTournamentForEditByIdAsync(int id)
         {
             return await this.context.Tournaments
                 .AsNoTracking()
@@ -76,7 +76,7 @@
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync(/*int userId*/)
+        public async Task<IEnumerable<TournamentInfoViewModel>> GetAllTournamentsForIndexAsync()
         {
             return await this.context.Tournaments
                 .AsNoTracking()

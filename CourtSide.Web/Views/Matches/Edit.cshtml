@@ -156,12 +156,12 @@
                         </div>
                     </div>
 
-                    <!-- 5. Results (Optional) -->
-                    <div class="form-section-title">Results (Optional)</div>
+                    <!-- 5. Results -->
+                    <div class="form-section-title">Results</div>
                     <div class="row g-2 mb-3">
                         <div class="col-md-6">
                             <label asp-for="ScoreResult" class="form-label-xs fw-semibold"></label>
-                            <input asp-for="ScoreResult" class="form-control form-control-xs" placeholder="e.g. 6-4, 6-3" />
+                            <input asp-for="ScoreResult" id="scoreResultInput" class="form-control form-control-xs" placeholder="e.g. 6-4, 6-3" />
                             <span asp-validation-for="ScoreResult" class="text-danger"></span>
                         </div>
                         <div class="col-md-6">
@@ -197,6 +197,8 @@
             const secondPlayer = document.getElementById('secondPlayerSelect');
             const winnerSelect = document.getElementById('winnerSelect');
             const matchStatusSelect = document.querySelector('[name="MatchStatus"]');
+            const scoreResultInput = document.getElementById('scoreResultInput');
+            const matchForm = document.querySelector('form');
 
             const initialWinnerValue = @Json.Serialize(Model.WinnerId?.ToString() ?? "");
 
@@ -204,6 +206,39 @@
                 if (!matchStatusSelect || !matchStatusSelect.value) return false;
                 const selectedOption = matchStatusSelect.options[matchStatusSelect.selectedIndex];
                 return selectedOption && selectedOption.text.trim().toLowerCase() === 'completed';
+            }
+
+            function isMatchScheduled() {
+                if (!matchStatusSelect || !matchStatusSelect.value) return false;
+                const selectedOption = matchStatusSelect.options[matchStatusSelect.selectedIndex];
+                return selectedOption && selectedOption.text.trim().toLowerCase() === 'scheduled';
+            }
+
+            function isMatchInProgress() {
+                if (!matchStatusSelect || !matchStatusSelect.value) return false;
+                const selectedOption = matchStatusSelect.options[matchStatusSelect.selectedIndex];
+                const text = selectedOption ? selectedOption.text.trim().toLowerCase() : '';
+                return text === 'inprogress' || text === 'in progress' || matchStatusSelect.value === '1';
+            }
+
+            function updateMatchStatusBehaviors() {
+                // 1. Enforce score requirement for Completed or InProgress; lock and clear for Scheduled
+                if (scoreResultInput) {
+                    if (isMatchScheduled()) {
+                        scoreResultInput.value = "";
+                        scoreResultInput.setAttribute("disabled", "disabled");
+                        scoreResultInput.removeAttribute("required");
+                    } else if (isMatchCompleted() || isMatchInProgress()) {
+                        scoreResultInput.removeAttribute("disabled");
+                        scoreResultInput.setAttribute("required", "required");
+                    } else {
+                        scoreResultInput.removeAttribute("disabled");
+                        scoreResultInput.removeAttribute("required");
+                    }
+                }
+
+                // 2. Handle Winner options based on Completed status
+                updateWinnerOptions(firstPlayer.value, secondPlayer.value);
             }
 
             function filterPlayerOptions() {
@@ -220,7 +255,7 @@
                     option.hidden = (option.value && option.value === secondVal);
                 });
 
-                updateWinnerOptions(firstVal, secondVal);
+                updateMatchStatusBehaviors();
             }
 
             function updateWinnerOptions(firstVal, secondVal) {
@@ -253,11 +288,19 @@
                 }
             }
 
+            // Temporarily enable disabled fields upon submission so model binding processes empty values cleanly
+            if (matchForm) {
+                matchForm.addEventListener('submit', function() {
+                    if (scoreResultInput) scoreResultInput.removeAttribute('disabled');
+                    if (winnerSelect) winnerSelect.removeAttribute('disabled');
+                });
+            }
+
             firstPlayer.addEventListener('change', filterPlayerOptions);
             secondPlayer.addEventListener('change', filterPlayerOptions);
 
             if (matchStatusSelect) {
-                matchStatusSelect.addEventListener('change', filterPlayerOptions);
+                matchStatusSelect.addEventListener('change', updateMatchStatusBehaviors);
             }
 
             filterPlayerOptions();

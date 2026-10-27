@@ -1,41 +1,88 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to Courtside";
 }
 
 @section MainStyle {
     <style>
-        .home-bg {
-            background-image: linear-gradient(rgba(13, 35, 58, 0.45), 
-            rgba(13, 71, 161, 0.6)), 
-            url('/images/home-button/home.jpg') !important;
+        .home-page-container {
+            background-color: #EFF3EA;
+            min-height: 100vh;
+            color: #142F26;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .hero-section {
+            background-color: #EFF3EA;
+            padding: 3rem 0;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #142F26;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #708078;
+            line-height: 1.5;
+            max-width: 520px;
+        }
+
+        .hero-image-card {
+            background-image: url('/images/home-page/court.png');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
+            border-radius: 20px;
+            min-height: 420px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .hero-badge-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #ffffff;
+            color: #123F30;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
     </style>
 }
 
-<div class="home-bg d-flex align-items-center justify-content-center text-center">
-    <div class="container text-white py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="display-3 fw-bold mb-3">Tennis Scores</h1>
-                <p class="lead mb-4 fs-4">
-                    Organize matches, track tournament results, and manage venues seamlessly.
+<div class="home-page-container pb-5">
+    <div class="container py-4">
+
+        <!-- HERO SECTION -->
+        <div class="row align-items-center g-5 hero-section mb-5">
+            <div class="col-lg-6">
+                <div class="text-uppercase fw-semibold mb-2" style="font-size: 0.75rem; letter-spacing: 1.5px; color: #123F30;">
+                    THE GAME, AT A GLANCE.
+                </div>
+                <h1 class="hero-title mb-4">
+                    A little closer to every point.
+                </h1>
+                <p class="hero-subtitle mb-0">
+                    Tennis scores, the tour and the stories behind it. Follow your favourites and find your place in the game—all in one place.
                 </p>
-                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                    <a asp-controller="Matches" asp-action="Index" class="btn btn-primary btn-lg px-4 gap-3 shadow-sm">
-                        <i class="bi bi-trophy me-2"></i>View Matches
-                    </a>
-                    <a asp-controller="Tournaments" asp-action="Index" class="btn btn-primary btn-lg px-4 shadow-sm">
-                        <i class="bi bi-calendar-event me-2"></i>Explore Tournaments
-                    </a>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-image-card">
+                    <div class="hero-badge-overlay">
+                        YOUR COURTSIDE STARTS HERE.
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

@@ -73,7 +73,18 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MatchFormViewModel matchForm)
         {
+            if (matchForm.MatchStatus == MatchStatus.Scheduled && !string.IsNullOrWhiteSpace(matchForm.ScoreResult))
+            {
+                this.ModelState.AddModelError(nameof(matchForm.ScoreResult), "Score result cannot be entered for a scheduled match.");
+            }
+
             bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
+            bool isInProgress = matchForm.MatchStatus == MatchStatus.InProgress;
+
+            if ((isCompleted || isInProgress) && string.IsNullOrWhiteSpace(matchForm.ScoreResult))
+            {
+                this.ModelState.AddModelError(nameof(matchForm.ScoreResult), "Score result is required when status is Completed or In Progress.");
+            }
 
             if (isCompleted && !matchForm.WinnerId.HasValue)
             {
@@ -131,8 +142,22 @@
                 return this.BadRequest();
             }
 
-            bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
+            // 1. Scheduled matches MUST NOT have a score result
+            if (matchForm.MatchStatus == MatchStatus.Scheduled && !string.IsNullOrWhiteSpace(matchForm.ScoreResult))
+            {
+                this.ModelState.AddModelError(nameof(matchForm.ScoreResult), "Score result cannot be entered for a scheduled match.");
+            }
 
+            // 2. Completed OR InProgress matches MUST have a score result
+            bool isCompleted = matchForm.MatchStatus == MatchStatus.Completed;
+            bool isInProgress = matchForm.MatchStatus == MatchStatus.InProgress;
+
+            if ((isCompleted || isInProgress) && string.IsNullOrWhiteSpace(matchForm.ScoreResult))
+            {
+                this.ModelState.AddModelError(nameof(matchForm.ScoreResult), "Score result is required when status is Completed or In Progress.");
+            }
+
+            // 3. Winner validations for Completed status
             if (isCompleted && !matchForm.WinnerId.HasValue)
             {
                 this.ModelState.AddModelError(nameof(matchForm.WinnerId),
@@ -145,6 +170,7 @@
                     "A winner can only be assigned if the match status is Completed.");
             }
 
+            // 4. Validate ModelState after all checks
             if (!this.ModelState.IsValid)
             {
                 await this.PopulateDropdownsAsync(matchForm);

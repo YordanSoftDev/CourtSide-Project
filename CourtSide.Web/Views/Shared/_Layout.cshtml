@@ -37,8 +37,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <!-- ADD SPACE HERE: ms-4 handles the space between the brand and nav links -->
+
                     <ul class="navbar-nav ms-4 flex-grow-1 gap-2">
+                        <!-- Home Link Added Here -->
+                        <li class="nav-item">
+                            <a class="nav-link custom-nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door"></i> Home
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link custom-nav-link" asp-area="" asp-controller="Matches" asp-action="Index">Scores</a>
                         </li>
@@ -72,6 +78,5 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+    @await RenderSectionAsync("Scripts", required: false)</body>
 </html>

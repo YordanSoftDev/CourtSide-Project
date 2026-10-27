@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourtSide.Data.Migrations
 {
     [DbContext(typeof(CourtSideDbContext))]
-    [Migration("20261026214748_InitialCreate")]
+    [Migration("20261027132320_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -2486,28 +2486,13 @@ namespace CourtSide.Data.Migrations
                             Height = "6'2\"/(188cm)",
                             LastName = "Rune",
                             Points = 2850,
-                            Rank = 11,
+                            Rank = 194,
                             TournamentsPlayed = 23,
                             Weight = "170 lbs/(77kg)"
                         },
                         new
                         {
                             Id = 94,
-                            Age = 21,
-                            Birthplace = "Prostejov, Czech Republic",
-                            CountryId = 45,
-                            FirstName = "Jakub",
-                            Gender = "Male",
-                            Height = "6'4\"/(193cm)",
-                            LastName = "Mensik",
-                            Points = 2495,
-                            Rank = 12,
-                            TournamentsPlayed = 23,
-                            Weight = "183 lbs/(83kg)"
-                        },
-                        new
-                        {
-                            Id = 95,
                             Age = 21,
                             Birthplace = "Irvine, California, USA",
                             CountryId = 187,
@@ -2522,7 +2507,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 96,
+                            Id = 95,
                             Age = 29,
                             Birthplace = "Gatchina, Russia",
                             CountryId = 88,
@@ -2537,7 +2522,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 97,
+                            Id = 96,
                             Age = 25,
                             Birthplace = "Mlada Boleslav, Czech Republic",
                             CountryId = 45,
@@ -2552,7 +2537,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 98,
+                            Id = 97,
                             Age = 21,
                             Birthplace = "Antwerp, Belgium",
                             CountryId = 17,
@@ -2567,7 +2552,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 99,
+                            Id = 98,
                             Age = 28,
                             Birthplace = "Roquebrune-Cap-Martin, France",
                             CountryId = 114,
@@ -2582,7 +2567,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 100,
+                            Id = 99,
                             Age = 22,
                             Birthplace = "Lima, Peru",
                             CountryId = 138,
@@ -2597,7 +2582,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 101,
+                            Id = 100,
                             Age = 20,
                             Birthplace = "Rio de Janeiro, Brazil",
                             CountryId = 24,
@@ -2612,7 +2597,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 102,
+                            Id = 101,
                             Age = 22,
                             Birthplace = "Asuncion, Paraguay",
                             CountryId = 137,
@@ -2627,7 +2612,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 103,
+                            Id = 102,
                             Age = 22,
                             Birthplace = "Madrid, Spain",
                             CountryId = 165,
@@ -2642,7 +2627,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 104,
+                            Id = 103,
                             Age = 24,
                             Birthplace = "Rochefort, Belgium",
                             CountryId = 17,
@@ -2657,7 +2642,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 105,
+                            Id = 104,
                             Age = 23,
                             Birthplace = "Lisbon, Portugal",
                             CountryId = 141,
@@ -2672,7 +2657,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 106,
+                            Id = 105,
                             Age = 20,
                             Birthplace = "Madrid, Spain",
                             CountryId = 165,
@@ -2687,7 +2672,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 107,
+                            Id = 106,
                             Age = 27,
                             Birthplace = "Buenos Aires, Argentina",
                             CountryId = 7,
@@ -2702,7 +2687,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 108,
+                            Id = 107,
                             Age = 24,
                             Birthplace = "Buenos Aires, Argentina",
                             CountryId = 7,
@@ -2717,7 +2702,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 109,
+                            Id = 108,
                             Age = 30,
                             Birthplace = "Piotrkow Trybunalski, Poland",
                             CountryId = 140,
@@ -2732,7 +2717,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 110,
+                            Id = 109,
                             Age = 25,
                             Birthplace = "Edinburgh, Scotland",
                             CountryId = 186,
@@ -2747,7 +2732,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 111,
+                            Id = 110,
                             Age = 36,
                             Birthplace = "Santiago del Estero, Argentina",
                             CountryId = 7,
@@ -2762,7 +2747,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 112,
+                            Id = 111,
                             Age = 34,
                             Birthplace = "Tbilisi, Georgia",
                             CountryId = 64,
@@ -2777,7 +2762,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 113,
+                            Id = 112,
                             Age = 38,
                             Birthplace = "Medjugorje, Bosnia and  Herzegovina",
                             CountryId = 42,
@@ -2792,7 +2777,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 114,
+                            Id = 113,
                             Age = 22,
                             Birthplace = "Porto, Portugal",
                             CountryId = 141,
@@ -2807,7 +2792,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 115,
+                            Id = 114,
                             Age = 22,
                             Birthplace = "Montville, NJ, USA",
                             CountryId = 187,
@@ -2822,7 +2807,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 116,
+                            Id = 115,
                             Age = 25,
                             Birthplace = "Paris, France",
                             CountryId = 61,
@@ -2837,7 +2822,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 117,
+                            Id = 116,
                             Age = 23,
                             Birthplace = "Aarhus, Denmark",
                             CountryId = 47,
@@ -2852,7 +2837,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 118,
+                            Id = 117,
                             Age = 21,
                             Birthplace = "Siauliai, Lithuania",
                             CountryId = 100,
@@ -2867,7 +2852,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 119,
+                            Id = 118,
                             Age = 29,
                             Birthplace = "Zagreb, Croatia",
                             CountryId = 42,
@@ -2882,7 +2867,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 120,
+                            Id = 119,
                             Age = 35,
                             Birthplace = "Rocourt, Belgium",
                             CountryId = 17,
@@ -2897,7 +2882,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 121,
+                            Id = 120,
                             Age = 33,
                             Birthplace = "Wiener Neustadt, Austria",
                             CountryId = 10,
@@ -2912,7 +2897,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 122,
+                            Id = 121,
                             Age = 35,
                             Birthplace = "Podgorica, Montenegro",
                             CountryId = 32,
@@ -2927,7 +2912,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 123,
+                            Id = 122,
                             Age = 34,
                             Birthplace = "Buenos Aires, Argentina",
                             CountryId = 7,
@@ -2942,7 +2927,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 124,
+                            Id = 123,
                             Age = 28,
                             Birthplace = "Spisska Nova Ves, Slovakia",
                             CountryId = 158,
@@ -2957,7 +2942,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 125,
+                            Id = 124,
                             Age = 27,
                             Birthplace = "Lommel, Belgium",
                             CountryId = 17,
@@ -2972,7 +2957,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 126,
+                            Id = 125,
                             Age = 24,
                             Birthplace = "Bortala, China",
                             CountryId = 36,
@@ -2987,7 +2972,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 127,
+                            Id = 126,
                             Age = 22,
                             Birthplace = "Hong Kong, China",
                             CountryId = 36,
@@ -3002,7 +2987,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 128,
+                            Id = 127,
                             Age = 26,
                             Birthplace = "Toulouse, France",
                             CountryId = 61,
@@ -3017,7 +3002,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 129,
+                            Id = 128,
                             Age = 27,
                             Birthplace = "Paris, France",
                             CountryId = 61,
@@ -3032,7 +3017,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 130,
+                            Id = 129,
                             Age = 21,
                             Birthplace = "Split, Croatia",
                             CountryId = 42,
@@ -3047,7 +3032,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 131,
+                            Id = 130,
                             Age = 24,
                             Birthplace = "Bournemouth, United Kingdom",
                             CountryId = 186,
@@ -3062,7 +3047,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 132,
+                            Id = 131,
                             Age = 24,
                             Birthplace = "Boulogne-sur-Mer, France",
                             CountryId = 61,
@@ -3077,7 +3062,7 @@ namespace CourtSide.Data.Migrations
                         },
                         new
                         {
-                            Id = 133,
+                            Id = 132,
                             Age = 26,
                             Birthplace = "Sacramento, California, USA",
                             CountryId = 187,
@@ -4929,62 +4914,82 @@ namespace CourtSide.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "All England Lawn Tennis and Croquet Club"
+                            Name = "Palais des Sports de Gerland (Lyon Open)"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Stade Roland Garros"
+                            Name = "Accor Arena / Paris La Défense Arena (Rolex Paris Masters)"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "USTA Billie Jean King National Tennis Center"
+                            Name = "USTA Billie Jean King National Tennis Center (US Open)"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Almaty Arena"
+                            Name = "Almaty Arena (Almaty Open)"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Melbourne Park"
+                            Name = "Melbourne Park (Australian Open)"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Monte-Carlo Country Club"
+                            Name = "Monte-Carlo Country Club (Monte-Carlo Masters)"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Caja Mágica"
+                            Name = "Caja Mágica (Mutua Madrid Open)"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Foro Italico"
+                            Name = "Foro Italico (Italian Open)"
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Queen's Club"
+                            Name = "Queen's Club (Cinch Championships)"
                         },
                         new
                         {
                             Id = 10,
-                            Name = "St. Jakobshalle"
+                            Name = "St. Jakobshalle (Swiss Indoors Basel)"
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Palais des Sports de Gerland"
+                            Name = "Qizhong Forest Sports City Arena (Shanghai Masters)"
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Qizhong Forest Sports City Arena"
+                            Name = "Sportpaleis Antwerp / Lotto Arena (European Open)"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Kungliga Tennishallen (Bybit Stockholm Open)"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Inalpi Arena (Nitto Finals)"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Unipol Arena (Davis Cup Finals)"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "PalaTennis 'Corrado Barazzutti' (Next Gen Finals)"
                         });
                 });
 
